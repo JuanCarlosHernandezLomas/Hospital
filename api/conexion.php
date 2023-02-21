@@ -1,17 +1,19 @@
 <?php
 
-
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpassword= "";
-    $db = "hospital";
-    $con =  mysqli_connect($dbhost,$dbuser,$dbpassword,$db);
-
-    if(mysqli_connect_errno())
-    {
-        echo "fallo la conexion";
+    function OpenCon(){
+        $dbhost = "localhost";
+        $dbuser = "root";
+        $dbpass = "";
+        $db = "hospital";
+        $conn = new mysqli($dbhost, $dbuser, $dbpass, $db)
+        or die("Connect failed: %s\n". $conn->error);
+        return $conn;
     }
 
+    OpenCon();
+    function CloseCon($conn){
+        $conn->close();
+    }
 
 
 ?>
