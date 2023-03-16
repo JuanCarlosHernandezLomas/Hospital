@@ -19,7 +19,7 @@ import Home from "./Screen/HomeSreen";
     <Tab.Navigator 
     initialRouteName="User"
     screenOptions={{
-      tabBarStyle: {backgroundColor: '#f1ebeb'},
+      tabBarStyle: {backgroundColor: 'white'},
       tabBarActiveTintColor: '#5cceee',
     }}>
       <Tab.Screen 

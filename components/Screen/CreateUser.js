@@ -2,7 +2,9 @@ import { View,Text, Center} from "native-base";
 import React from "react";
 import { Avatar } from 'react-native-elements';
 
-const CreateUser=()=>{
+
+
+const CreateUser=(navigation)=>{
     return(
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
@@ -66,6 +68,17 @@ const CreateUser=()=>{
                     Nss should contains 12 characters
                 </FormControl.HelperText>
             </FormControl>
+            <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#1b396a"
+                borderRadius={2}   
+                onPress= {()=>{
+                    navigation.navigation('HomeUser')
+                }}
+        >
+            Editar
+        </Button>
             </ScrollView>
             </VStack> 
             </Box>      

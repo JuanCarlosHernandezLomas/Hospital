@@ -3,12 +3,12 @@ import React from "react";
 import { Avatar } from 'react-native-elements';
 
 
-const HomeUser=()=>{
+const HomeUser=({navigation})=>{
     return(
+        <ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
             <VStack space={2} mt="2">
-            <ScrollView>
             <Text
              style={{
                 fontSize: 20,
@@ -30,32 +30,44 @@ const HomeUser=()=>{
             <FormControl >
                 <FormControl.Label>Name </FormControl.Label>
                 <Input p={2} placeholder="ANA" 
-                color="black.400" borderRadius={30} />
+                color="black.400" backgroundColor={"white"} borderRadius={30}  />
             </FormControl>
             <FormControl >
                 <FormControl.Label>Lastname </FormControl.Label>
                 <Input p={2} placeholder="Gallardo Medina" 
-                color="black.400" borderRadius={30} />
+                color="black.400" backgroundColor={"white"} borderRadius={30} />
             </FormControl>
             <FormControl >
                 <FormControl.Label>Direcction </FormControl.Label>
                 <Input p={2} placeholder="Lomas del ajderez" 
-                color="black.400" borderRadius={30} />
+                color="black.400"backgroundColor={"white"} borderRadius={30} />
             </FormControl>
             <FormControl >
                 <FormControl.Label>Phone </FormControl.Label>
                 <Input p={2} placeholder="449-132-2322" 
-                color="black.400" borderRadius={30} />
+                color="black.400" backgroundColor={"white"} borderRadius={30} />
             </FormControl>
             <FormControl >
                 <FormControl.Label>NSS </FormControl.Label>
                 <Input p={2} placeholder="12345678910" 
-                color="black.400" borderRadius={30} />
+                color="black.400" backgroundColor={"white"} borderRadius={30} />
             </FormControl>
-            </ScrollView>
+            <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#1b396a"
+                borderRadius={2}   
+                onPress= {()=>{
+                    navigation.navigation('CreateUser')
+                }}
+        >
+            Editar
+        </Button>
+            
             </VStack> 
             </Box>      
         </Center>
+        </ScrollView>
     );
 }
 export default HomeUser
