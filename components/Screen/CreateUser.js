@@ -1,4 +1,4 @@
-import { View,Text, Center} from "native-base";
+import { View,Text, Center} from "react-native";
 import React from "react";
 import { Avatar } from 'react-native-elements';
 
