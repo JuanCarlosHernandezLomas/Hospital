@@ -12,6 +12,24 @@ const Register=()=>{
 
     const submit = async ()=>{
         console.log("Submitted", formData)
+        setData({ ...formData, action: 'login' })
+        const formDataforRequest = new FormData()
+        formDataforRequest.append('Id', formData.Id)
+        formDataforRequest.append('Email', formData.Email)
+        formDataforRequest.append('Password', formData.Passwords)
+        formDataforRequest.append('Role', formData.Role)
+
+        const response = await axios.post(
+            'http://192.168.100.12/Hospital/api/registrar.php', 
+            formDataforRequest,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Access-control-Allow-origin": "*"
+                },
+                transformRequest: formData => formDataforRequest,
+            }
+        )
 
         }
 
@@ -33,6 +51,22 @@ const Register=()=>{
             <Text color="#1b396a" fontWeight="semibold" fontSize="15">Register</Text>
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={3} mt="5">
+                <FormControl>
+                        <FormControl.Label>Id</FormControl.Label>
+                        <Input p={2} placeholder="example@mail.com"
+                         borderRadius={30} 
+                         onChangeText={
+                            value=>setData({
+                                ...formData,
+                                Id: value
+
+                            })
+                         }
+                         />
+                            <FormControl.HelperText>
+                                Enter the email
+                            </FormControl.HelperText>
+                    </FormControl>
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
                         <Input p={2} placeholder="example@mail.com"
