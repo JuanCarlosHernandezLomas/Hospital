@@ -62,6 +62,7 @@ const day=[
                 <FormControl.Label>day </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione un dia" 
                 color="black.400"  borderRadius={30} 
+                
                 data={day}
                 setDay={setDay}
                 dropdownItemStyles={{backgroundColor: 'white'}}
@@ -81,7 +82,7 @@ const day=[
             <FormControl >
                 <FormControl.Label>NSS </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400"backgroundColor={"white"} borderRadius={30} />
+                color="black.400" backgroundColor={"white"} borderRadius={30} />
                 <FormControl.HelperText>
                     Nss should contains 12 characters
                 </FormControl.HelperText>
@@ -89,7 +90,7 @@ const day=[
             <Button
                 mt="2"
                 size="lg"
-                backgroundColor="#1b396a"
+                backgroundColor="#EB4365"
                 borderRadius={2}   
                 onPress= {()=>{
                     navigation.navigation('HomeUser')
@@ -100,7 +101,7 @@ const day=[
         <Button
                 mt="2"
                 size="lg"
-                backgroundColor="#1b396a"
+                backgroundColor="#F50106"
                 borderRadius={2}   
                 onPress= {()=>{
                     navigation.navigation('HomeUser')

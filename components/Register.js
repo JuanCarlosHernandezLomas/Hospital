@@ -1,11 +1,23 @@
 import React from "react";
 import { View,Text, Center, ScrollView,Input,VStack,Button, Box,FormControl,Link} from "native-base";
 import { SelectList } from "react-native-dropdown-select-list";
+import axios from "axios";
 
 
 const Register=()=>{
 
+
     const [Roles, setRoles]= React.useState("");
+    const[formData,setData]=React.useState({})
+
+    const submit = async ()=>{
+        console.log("Submitted", formData)
+
+        }
+
+       
+           
+        
 
     const Role=[
         {key: '1', value: 'Paciente'},
@@ -24,7 +36,15 @@ const Register=()=>{
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
                         <Input p={2} placeholder="example@mail.com"
-                         borderRadius={30} />
+                         borderRadius={30} 
+                         onChangeText={
+                            value=>setData({
+                                ...formData,
+                                Email: value
+
+                            })
+                         }
+                         />
                             <FormControl.HelperText>
                                 Enter the email
                             </FormControl.HelperText>
@@ -33,26 +53,41 @@ const Register=()=>{
                         <FormControl.Label>Password</FormControl.Label>
                         <Input type="password" p={2} 
                         placeholder="Mora than 8 caracters" 
-                        borderRadius={30} />
+                        borderRadius={30} 
+                        onChangeText={
+                            value=>setData({
+                                ...formData,
+                                Passwords: value
+
+                            })
+                         }
+                        />
                             <FormControl.HelperText>
                                 The password must have a min of 8, one Capital and One special character
                             </FormControl.HelperText>
                     </FormControl>
                     <FormControl>
                         <FormControl.Label>Role</FormControl.Label>
-                        <SelectList 
-                        p={2} placeholder="seleccione un Role" 
-                        color="black.400"  borderRadius={30} 
-                        data={Role}
-                        setDay={setRoles}
-                        dropdownItemStyles={{backgroundColor: 'white'}}
-                        />
+                        <Input p={2} placeholder="Paciente"
+                         borderRadius={30}
+                         onChangeText={
+                            value=>setData({
+                                ...formData,
+                                Role: value
+
+                            })
+                         }
+                         />
+                            <FormControl.HelperText>
+                                Enter the Role
+                            </FormControl.HelperText>
                     </FormControl>
                     <Button 
                         mt="2"
                         size="lg"
                         backgroundColor="#1b396a"
                         borderRadius={30}
+                        onPress={submit }
                         
                         >  
                         Sign in

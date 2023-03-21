@@ -73,12 +73,14 @@ const styles = StyleSheet.create({
         
         
         
+        
 
     },
     wrap:{
         marginTop: '5%',
         width: WIDTH,
         height: HEIGHT *0.25,
+       
     },
     wrapDot:{
         marginTop: '105%',
