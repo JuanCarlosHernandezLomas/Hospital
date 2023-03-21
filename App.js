@@ -8,7 +8,7 @@ import Register from "./components/Register";
 export default function App(){
   return(
     <NativeBaseProvider >
-    <Register />
+    <Navegation></Navegation>
     </NativeBaseProvider>
   );
   
