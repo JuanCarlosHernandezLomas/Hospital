@@ -3,13 +3,13 @@ import React from "react";
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 
-const ListDoctor=()=>{
 
-    const headers=['Medico','Horario','dias','especialidad','espacios','#'   ];
+const ListPatient=()=>{
+const headers=['Paciente','Hora','dia','estatus'];
     const rows=[
-        ['Maria','8:00-3:00','L-V','Cardiologo','20','presionar'],
-        ['Laura','12:00-5:00','L-x','Medico General','10','presionar'],
-        ['Luis','3:00-8:00','V','Neurologo','5','presionar']
+        ['Maria','8:30','M','Carcelacion'],
+        ['Laura','4:00','L','bueno'],
+        ['Luis','3:40','V','bueno']
     ]
     
     
@@ -22,14 +22,14 @@ const ListDoctor=()=>{
                 textAlign:"center",
                 marginTop: "20%"
             }}>
-            Doctors</Text>
+            Paciente</Text>
             <Table borderStyle={{borderWidth: 1}}>
                 <Row data={headers}
                 style={{
                     backgroundColor: 'lightgray',
                 }}
                 height={40}
-                flexArr={[0.5,0.7,0.5,1,0.6,0.6]}
+                flexArr={[1,1,1,1]}
                 textStyle={{
                     textAlign: 'center'
                 }}
@@ -37,7 +37,7 @@ const ListDoctor=()=>{
                 <TableWrapper>
                     <Rows data={rows}
                     heightArr={[28,28,28,28,,28,28]}
-                    flexArr={[0.5,0.7,0.5,1,0.6,0.6]}
+                    flexArr={[1,1,1,1]}
                     textStyle={{
                         textAlign: 'center'
                     }}
@@ -48,4 +48,4 @@ const ListDoctor=()=>{
     );
 };
 
-export default ListDoctor;
+export default ListPatient;
