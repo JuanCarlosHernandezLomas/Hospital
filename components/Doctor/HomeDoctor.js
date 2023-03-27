@@ -2,9 +2,11 @@ import React from "react";
 import { View,Text, Center,ScrollView,Input,VStack,Button, Box,FormControl} from "native-base";
 import { Avatar } from 'react-native-elements'
 import { SelectList } from "react-native-dropdown-select-list";
+import { useNavigation } from "@react-navigation/native";
 
 
 const HomeDoctor=()=>{
+    const navigation = useNavigation();
     const[formData,setData]=React.useState({})
     const [selected, setSelected]= React.useState("");
     
@@ -126,7 +128,7 @@ return(
             size="lg"
             backgroundColor="#1b396a"
             borderRadius={2}   
-            onPress= {submit}
+            onPress= {()=>navigation.navigate("CreateDoctor")}
         >
             Actualizar Datos
          </Button>
