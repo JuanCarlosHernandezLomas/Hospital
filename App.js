@@ -5,21 +5,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 
  //scren
- //import ListPatient from "./Doctor/ListPatient";
- //import HomeDoctor from "./Doctor/HomeDoctor";
- //import DateDoctor from "./Doctor/DateDoctor";
- //import HomeUser from "./Screen/HomeUser";
- //import ListDoctor from "./Screen/ListDoctor";
+ import CreateUser from "./components/Screen/CreateUser";
  import DateUser from "./components/Screen/DateUser";
  import QuestionSreen from "./components/Screen/QuestionScream";
- import Home from "./components/Screen/HomeSreen";
+ import Home from "./components/Screen/HomeScreen";
  import ListDoctor from "./components/Screen/ListDoctor";
  import HomeUser from "./components/Screen/HomeUser";
- import Register from "./components/Register";
- import Login from "./components/Login";
+ import Register from "./components/auth/Register";
+ import Login from "./components/auth/Login";
  import ListPatient from "./components/Doctor/ListPatient";
  import HomeDoctor from "./components/Doctor/HomeDoctor";
 import DateDoctor from "./components/Doctor/DateDoctor";
+import CreateDoctor from "./components/Doctor/CreateDoctor";
 import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
@@ -135,13 +132,18 @@ export default function App(){
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{headerShown: false}}
-          initialRouteName="UserTab"
+          initialRouteName="Register"
         >
           <Stack.Screen
             name="Register"
             component={Register}
             options={{headerShown: false}}
           />
+        <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
+        />
           <Stack.Screen
           name="UserTab"
           component={UserTab}
@@ -152,6 +154,20 @@ export default function App(){
           <Stack.Screen
           name="DoctorTab"
           component={DoctorTab}
+          options={{
+            headerBackVisible: true,
+          }}
+          />
+          <Stack.Screen
+          name="CreateUser"
+          component={CreateUser}
+          options={{
+            headerBackVisible: true,
+          }}
+          />
+          <Stack.Screen
+          name="CreateDoctor"
+          component={CreateDoctor}
           options={{
             headerBackVisible: true,
           }}

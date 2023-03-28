@@ -58,10 +58,21 @@ const HomeUser=({navigation})=>{
                 backgroundColor="#1b396a"
                 borderRadius={2}   
                 onPress= {()=>{
-                    navigation.navigation('CreateUser')
+                    navigation.navigate('CreateUser')
                 }}
         >
             Editar
+        </Button>
+        <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#1b396a"
+                borderRadius={2}   
+                onPress= {()=>{
+                    navigation.navigate('Login')
+                }}
+        >
+            Salir
         </Button>
             
             </VStack> 

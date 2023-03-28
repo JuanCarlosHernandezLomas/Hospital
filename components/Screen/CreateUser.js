@@ -139,7 +139,7 @@ const CreateUser=()=>{
                 borderRadius={2}   
                 onPress= {submit}
             >
-                Editar
+                Guardar
              </Button>
             </ScrollView>
             </VStack> 

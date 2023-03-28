@@ -128,19 +128,21 @@ return(
             size="lg"
             backgroundColor="#1b396a"
             borderRadius={2}   
-            onPress= {()=>navigation.navigate("CreateDoctor")}
+            onPress= {()=>navigation.navigate('CreateDoctor')}
         >
             Actualizar Datos
          </Button>
          <Button
-            mt="2"
-            size="lg"
-            backgroundColor="#1b396a"
-            borderRadius={2}   
-            onPress= {submit}
+                mt="2"
+                size="lg"
+                backgroundColor="#1b396a"
+                borderRadius={2}   
+                onPress= {()=>{
+                    navigation.navigate('Login')
+                }}
         >
-            salir
-         </Button>
+         Salir
+        </Button>
         </ScrollView>
         </VStack> 
         </Box>      
