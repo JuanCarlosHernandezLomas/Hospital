@@ -2,12 +2,13 @@ import React from "react";
 import { View,Text, Center,ScrollView,Input,VStack,Button, Box,FormControl} from "native-base";
 import { Avatar } from 'react-native-elements';
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 
 
-const CreateUser=()=>{
-
-        const[formData,setData]=React.useState({})
+const CreateUser=(navigate)=>{
+    const navigation = useNavigation();
+    const[formData,setData]=React.useState({})
 
     const submit = async ()=>{
         console.log("Submitted", formData)
@@ -18,9 +19,9 @@ const CreateUser=()=>{
         formDataforRequest.append('Direction', formData.Direction)
         formDataforRequest.append('Phone', formData.Phone)
         formDataforRequest.append('NSS', formData.NSS)
-
+//172.25.48.1
         const response = await axios.post(
-            'http://172.25.48.1/Hospital/api/Patient/CreateUser.php', 
+            'http://192.168.100.239/Hospital/api/Patient/CreateUser.php', 
             formDataforRequest,
             {
                 headers: {
@@ -141,6 +142,17 @@ const CreateUser=()=>{
             >
                 Guardar
              </Button>
+             <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#1b396a"
+                borderRadius={2}   
+                onPress= {()=>{
+                    navigation.navigate('UserTab')
+                }}
+        >
+         Regresar
+        </Button>
             </ScrollView>
             </VStack> 
             </Box>      

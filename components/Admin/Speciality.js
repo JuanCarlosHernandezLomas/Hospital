@@ -3,34 +3,26 @@ import { View,Text, Center,ScrollView,Input,VStack,Button, Box,FormControl, Sele
 import { Avatar } from 'react-native-elements'
 import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from "@react-navigation/native";
-;
 import axios from "axios";
 
 
 
-const CreateDoctor=()=>{
-    const navigation = useNavigation();
+const Speciality=()=>{
+        const navigation = useNavigation();
         const[formData,setData]=React.useState({})
-        const [selected, setSelected]= React.useState("");
         
-        const data =[
-            {key: '1', value: 'Cardiologo'},
-            {key: '2', value: 'Neurologo'},
-            {key: '3', value: 'Traumatologo'},
-            {key: '4', value: 'Medico General'},
-        ];
-
+        
     const submit = async ()=>{
         console.log("Submitted", formData)
         setData({ ...formData, action: 'login' })
         const formDataforRequest = new FormData()
-        formDataforRequest.append('Name', formData.Name)
-        formDataforRequest.append('LastName', formData.LastName)
-        formDataforRequest.append('Schedule', formData.Schedule)
+        formDataforRequest.append('StartTime', formData.StartTime)
+        formDataforRequest.append('EndTime', formData.EndTime)
+        formDataforRequest.append('Spaces', formData.Spaces)
 
 
         const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/Patient/CreateUser.php', 
+            'http://192.168.100.239/Hospital/api/Admin/Schudeles.php', 
             formDataforRequest,
             {
                 headers: {
@@ -54,27 +46,17 @@ const CreateDoctor=()=>{
                             marginTop: "20%"
                             }}
                         >
-                         Perfil
+                         Specialidad
                         </Text>
-                        <Center>
-                             <Avatar
-                                size={"xlarge"}
-                                rounded
-                                source={{
-                                uri:
-                                'https://depor.com/resizer/pU2cw5AVsAeDuCSRoNMh1QszXiY=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HMBTNM3UYJCSRBD2MDIBTPU6X4.jpg',
-                                }}
-                            />
-                        </Center>
-            <FormControl >
-                <FormControl.Label>Name </FormControl.Label>
-                <Input p={2} placeholder="enter you name" 
+                <FormControl >
+                <FormControl.Label>StartTime </FormControl.Label>
+                <Input p={2} placeholder="start Time" 
                     color="black.400" 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
                     ...formData,
-                    Name: value
+                    StartTime: value
                    })
                     }
                 />
@@ -83,13 +65,13 @@ const CreateDoctor=()=>{
                 </FormControl.HelperText>
             </FormControl>
             <FormControl >
-                <FormControl.Label>Lastname </FormControl.Label>
-                <Input p={2} placeholder="enter you name" 
+                <FormControl.Label>EndTime</FormControl.Label>
+                <Input p={2} placeholder="end TIme" 
                 color="black.400" borderRadius={30} 
                 onChangeText={
                     value=>setData({
                     ...formData,
-                    LastName: value
+                    EndTime: value
                    })
                  }
                 />
@@ -98,13 +80,15 @@ const CreateDoctor=()=>{
                 </FormControl.HelperText>
             </FormControl>
             <FormControl >
-                <FormControl.Label>specialidad </FormControl.Label>
-                <SelectList p={2} placeholder="seleccione una especialidad" 
-                color="black.400"   borderRadius={30}  
-                data={data}
-                setSelected={setSelected}
-                dropdownItemStyles={{backgroundColor: 'white'}}
-                onSelect={()=> alert(selected)}
+                <FormControl.Label>Spaces</FormControl.Label>
+                <Input p={2} placeholder="end TIme" 
+                color="black.400" borderRadius={30} 
+                onChangeText={
+                    value=>setData({
+                    ...formData,
+                    Spaces: value
+                   })
+                 }
                 />
                 <FormControl.HelperText>
                     nickname should contains atleast 6 characters
@@ -125,10 +109,10 @@ const CreateDoctor=()=>{
                 backgroundColor="#1b396a"
                 borderRadius={2}   
                 onPress= {()=>{
-                    navigation.navigate('DoctorTab')
+                    navigation.navigate('Login')
                 }}
         >
-         Regresar
+         Salir
         </Button>
             </ScrollView>
             </VStack> 
@@ -136,4 +120,4 @@ const CreateDoctor=()=>{
         </Center>
     );
 }
-export default CreateDoctor
+export default Speciality

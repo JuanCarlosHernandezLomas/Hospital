@@ -17,6 +17,8 @@ import { createStackNavigator } from '@react-navigation/stack';
  import HomeDoctor from "./components/Doctor/HomeDoctor";
 import DateDoctor from "./components/Doctor/DateDoctor";
 import CreateDoctor from "./components/Doctor/CreateDoctor";
+import DoctorSchedule from "./components/Admin/DoctorSchedule";
+import Speciality from "./components/Admin/Speciality";
 import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
@@ -120,6 +122,35 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
     </Tab.Navigator>
   );
  }
+ function AdminTab(){
+  return(
+    <Tab.Navigator 
+    initialRouteName="Schedule"
+    screenOptions={{
+      tabBarStyle: {backgroundColor: 'white'},
+      tabBarActiveTintColor: '#5cceee',
+    }}>
+      <Tab.Screen 
+      name="Schedule" 
+      component={DoctorSchedule}
+      options={{
+        tabBarIcon:({})=>(
+          <Fontisto name="date" size={24} color="black" />
+        ),
+        headerShown: false,
+      }}/>
+      <Tab.Screen 
+      name="Speciality" 
+      component={Speciality}
+      options={{
+        tabBarIcon:({})=>(
+          <Fontisto name="doctor" size={24} color="black" />
+        ),
+        headerShown: false,
+      }}/>
+    </Tab.Navigator>
+  );
+ }
 
 
 
@@ -168,6 +199,13 @@ export default function App(){
           <Stack.Screen
           name="CreateDoctor"
           component={CreateDoctor}
+          options={{
+            headerBackVisible: true,
+          }}
+          />
+          <Stack.Screen
+          name="Admin"
+          component={AdminTab}
           options={{
             headerBackVisible: true,
           }}

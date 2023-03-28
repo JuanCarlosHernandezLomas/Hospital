@@ -47,6 +47,16 @@ const Login=({navigation})=>{
                         >  
                         Doctor
                     </Button>
+                    <Button 
+                        mt="2"
+                        size="lg"
+                        backgroundColor="#1b396a"
+                        borderRadius={30}
+                        
+                        onPress={() =>{navigation.navigate('Admin')} }
+                        >  
+                        Admin
+                    </Button>
                     
                 </VStack>
             </Box>
