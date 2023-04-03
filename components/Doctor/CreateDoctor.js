@@ -23,23 +23,7 @@ const CreateDoctor=()=>{
     const submit = async ()=>{
         console.log("Submitted", formData)
         setData({ ...formData, action: 'login' })
-        const formDataforRequest = new FormData()
-        formDataforRequest.append('Name', formData.Name)
-        formDataforRequest.append('LastName', formData.LastName)
-        formDataforRequest.append('Schedule', formData.Schedule)
 
-
-        const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/Patient/CreateUser.php', 
-            formDataforRequest,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    "Access-control-Allow-origin": "*"
-                },
-                transformRequest: formData => formDataforRequest,
-            }
-        )
 
         }
     return(
@@ -104,7 +88,10 @@ const CreateDoctor=()=>{
                 data={data}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
-                onSelect={()=> alert(selected)}
+                onSelect={setSelected =>setSelected({
+                    ...formData,
+                    specialilidad:setSelected
+                })}
                 />
                 <FormControl.HelperText>
                     nickname should contains atleast 6 characters

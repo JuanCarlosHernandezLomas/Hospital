@@ -16,13 +16,11 @@ const Speciality=()=>{
         console.log("Submitted", formData)
         setData({ ...formData, action: 'login' })
         const formDataforRequest = new FormData()
-        formDataforRequest.append('StartTime', formData.StartTime)
-        formDataforRequest.append('EndTime', formData.EndTime)
-        formDataforRequest.append('Spaces', formData.Spaces)
+        formDataforRequest.append('Name', formData.Name)
 
 
         const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/Admin/Schudeles.php', 
+            'http://192.168.100.239/Hospital/api/Admin/Speciality.php', 
             formDataforRequest,
             {
                 headers: {
@@ -49,46 +47,16 @@ const Speciality=()=>{
                          Specialidad
                         </Text>
                 <FormControl >
-                <FormControl.Label>StartTime </FormControl.Label>
-                <Input p={2} placeholder="start Time" 
+                <FormControl.Label>Specialidad </FormControl.Label>
+                <Input p={2} placeholder="specialidad" 
                     color="black.400" 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
                     ...formData,
-                    StartTime: value
+                    Name: value
                    })
                     }
-                />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>EndTime</FormControl.Label>
-                <Input p={2} placeholder="end TIme" 
-                color="black.400" borderRadius={30} 
-                onChangeText={
-                    value=>setData({
-                    ...formData,
-                    EndTime: value
-                   })
-                 }
-                />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>Spaces</FormControl.Label>
-                <Input p={2} placeholder="end TIme" 
-                color="black.400" borderRadius={30} 
-                onChangeText={
-                    value=>setData({
-                    ...formData,
-                    Spaces: value
-                   })
-                 }
                 />
                 <FormControl.HelperText>
                     nickname should contains atleast 6 characters
