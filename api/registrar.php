@@ -11,6 +11,6 @@ $Role=$_POST['Role'];
     VALUES ('$Id','$Email', '$Password', '$Role');";
     $result = $conexion->query($sql);
     
-    echo("");
+    echo("result");
 
 ?>
