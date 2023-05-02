@@ -3,12 +3,45 @@ import { View,Text, Center,ScrollView,Input,VStack,Button, Box,FormControl} from
 import { Avatar } from 'react-native-elements'
 import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { useEffect } from "react";
 
 
 const HomeDoctor=()=>{
     const navigation = useNavigation();
-    const[formData,setData]=React.useState({})
-    const [selected, setSelected]= React.useState("");
+    const [isLoading, setLoading] = React.useState();
+    const [user, setUser] = React.useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            const response = axios.get(
+                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
+                
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                }
+            ).then((response) => {
+                console.log(response.data);
+                setLoading(false);
+                setUser({
+                    ...user,
+                    Nombre: response.data[1].Nombre,
+                    Apellido: response.data[1].Apellido,
+                    especialidad: response.data[1].especialidad,
+                    inicio: response.data[1].inicio,
+                    salida: response.data[1].salida,
+                    
+                });
+                
+            })
+        }, 100);
+    }, [isLoading]);
+
+
+
     
     const data =[
         {key: '1', value: 'Cardiologo'},
@@ -17,28 +50,6 @@ const HomeDoctor=()=>{
         {key: '4', value: 'Medico General'},
     ];
 
-const submit = async ()=>{
-    console.log("Submitted", formData)
-    setData({ ...formData, action: 'login' })
-    const formDataforRequest = new FormData()
-    formDataforRequest.append('Name', formData.Name)
-    formDataforRequest.append('LastName', formData.LastName)
-    formDataforRequest.append('Schedule', formData.Schedule)
-
-
-    const response = await axios.post(
-        'http://172.25.48.1/Hospital/api/Patient/CreateUser.php', 
-        formDataforRequest,
-        {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                "Access-control-Allow-origin": "*"
-            },
-            transformRequest: formData => formDataforRequest,
-        }
-    )
-
-    }
 
 
 return(
@@ -69,19 +80,23 @@ return(
                     <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
                     <Text fontSize="20" fontWeight="bold" mt="3" >
                         {"   "}Name :
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Francisco </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Nombre}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
                         {"   "}Last Name:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Loera </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Apellido}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
-                        {"   "}Time:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> 8:00-22:00</Text>
+                        {"   "}Start:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.inicio}</Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}End:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.salida}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}Specialidad:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">Neurologo</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.especialidad}</Text>
                     </Text>
         <Button
             mt="2"

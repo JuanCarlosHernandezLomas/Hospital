@@ -2,118 +2,57 @@ import { View, Text, Center, ScrollView,Input,VStack,Button, Box,FormControl } f
 import React from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Image } from 'react-native-elements';
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+
+
 
 
 
 const DateDoctor=()=>{
-
-    const [selected, setSelected]= React.useState("");
-const [days, setDay]= React.useState("");
-
-const data =[
-    {key: '1', value: 'Gimena'},
-    {key: '2', value: 'Luis'},
-    {key: '3', value: 'Raul'},
-    {key: '4', value: 'Melisa'},
-];
-
-const day=[
-    {key: '1', value: 'Lunes'},
-    {key: '2', value: 'Martes'},
-    {key: '3', value: 'Miercoles'},
-    {key: '4', value: 'Jueves'},
-    {key: '5', value: 'Viernes'},
-    {key: '6', value: 'sabado'},
-    {key: '7', value: 'Domingo'},
+const headers=['Paciente','frecuencias','estatus'];
+    const rows=[
+        ['Maria','baja','Carcelacion'],
+        ['Laura','Alta','bueno'],
+        ['Luis','baja','bueno']
+    ]
     
-]
+    
     return(
         <ScrollView backgroundColor={"#CECEE5"}>
-<Center w="100%">
-            <Box px="1" py="8" w="90%" maxW="290">
-            <VStack space={2} mt="2">
+        <View>
             <Text
              style={{
                 fontSize: 20,
                 textAlign:"center",
                 marginTop: "20%"
-                }}>
-                Cita
-            </Text>
-            <Center>
-                <Image 
-                source={{ uri: 'https://us.123rf.com/450wm/ahasoft2000/ahasoft20001602/ahasoft2000160201715/52102515-el-doctor-calendario-icono-larga-sombra-el-estilo-es-un-s%C3%ADmbolo-de-luz-plana-con-%C3%A1ngulos.jpg?ver=6' }}
-                style={{ width: 150, height: 150 }}
-                backgroundColor={"#CECEE5"}/>
-            </Center>
-            <FormControl >
-                <FormControl.Label>Doctor </FormControl.Label>
-                <SelectList p={2} placeholder="seleccione un doctor" 
-                color="black.400"   borderRadius={30}  
-                data={data}
-                setSelected={setSelected}
-                dropdownItemStyles={{backgroundColor: 'white'}}
-                />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>day </FormControl.Label>
-                <SelectList p={2} placeholder="seleccione un dia" 
-                color="black.400"  borderRadius={30} 
-                
-                data={day}
-                setDay={setDay}
-                dropdownItemStyles={{backgroundColor: 'white'}}
-                />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>hora</FormControl.Label>
-                <Input p={2} placeholder="ingrese una hora" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>NSS </FormControl.Label>
-                <Input p={2} placeholder="enter you name" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-                <FormControl.HelperText>
-                    Nss should contains 12 characters
-                </FormControl.HelperText>
-            </FormControl>
-            <Button
-                mt="2"
-                size="lg"
-                backgroundColor="#EB4365"
-                borderRadius={2}   
-                onPress= {()=>{
-                    navigation.navigation('HomeUser')
+            }}>
+            Informacion de los Paciente</Text>
+            <Table borderStyle={{borderWidth: 1,borderColor: '#00BFFF'}}>
+                <Row data={headers}
+                style={{
+                    backgroundColor: '#87CEEB'
                 }}
-        >
-            Generar cita 
-        </Button>
-        <Button
-                mt="2"
-                size="lg"
-                backgroundColor="#F50106"
-                borderRadius={2}   
-                onPress= {()=>{
-                    navigation.navigation('HomeUser')
+                height={40}
+                flexArr={[1,1,1]}
+                textStyle={{
+                    textAlign: 'center'
                 }}
-        >
-            cancelar cita 
-        </Button>
-            
-            </VStack> 
-            </Box>      
-        </Center>
-        </ScrollView>
+                />
+                <TableWrapper>
+                    <Rows data={rows}
+                    heightArr={[28,28,28,28,,28,28]}
+                    flexArr={[1,1,1,1]}
+                    textStyle={{
+                        textAlign: 'center'
+                    }}
+                    style={{
+                        backgroundColor: 'white',
+                    }}/>
+                </TableWrapper>
+            </Table>
+        </View>  
+        </ScrollView>     
+
     );
 };
 

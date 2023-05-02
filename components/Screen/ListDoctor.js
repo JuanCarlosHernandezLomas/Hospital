@@ -1,15 +1,48 @@
 import { View,Text,ScrollView } from "native-base";
 import React from "react";
+import { useEffect } from "react";
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-
+import axios from "axios";
 
 const ListDoctor=()=>{
+
+    const [isLoading, setLoading] = React.useState();
+    const [user, setUser] = React.useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            const response = axios.get(
+                'http://192.168.100.11/Hospital/api/Doctor/DateDoctor.php',
+                
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                }
+            ).then((response) => {
+                console.log(response.data[2]);
+                setLoading(false);
+                setUser({
+                    ...user,
+                    cupos: response.data[2].cupos,
+                    dia: response.data[2].dia,
+                    especialidad: response.data[2].especialidad,
+                    hora: response.data[2].horario,
+                    medico: response.data[2].medico,
+                    
+                });
+                
+            })
+        }, 100);
+    }, [isLoading]);
+
 
     const headers=['Medico','Horario','dias','especialidad','espacios','#'   ];
     const rows=[
         ['Maria','8:00-3:00','L-V','Cardiologo','20','presionar'],
         ['Laura','12:00-5:00','L-x','Medico General','10','presionar'],
-        ['Luis','3:00-8:00','V','Neurologo','5','presionar']
+        [user.medico,user.hora,user.dia,user.especialidad,user.cupos,'presionar']
     ]
     
     

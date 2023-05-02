@@ -3,10 +3,17 @@ include ("../conexion.php");
 $conexion = OpenCon();
 
 
-    $sql ="select * from patient WHERE Id =1
+    $sql ="select * from patient 
     ";
-    $result = $conexion->query($sql);
+   if( $result = $conexion->query($sql)){
+    for(
+        $set = array();
+        $row = $result->fetch_assoc();
+        $set[] = $row
+    );
     
-    echo($result);
-
+    
+    echo json_encode($set);
+   }
+  
 ?>

@@ -9,6 +9,37 @@ import { Avatar } from 'react-native-elements';
 
 const HomeUser=({navigation})=>{
 
+    const [isLoading, setLoading] = React.useState();
+    const [user, setUser] = React.useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            const response = axios.get(
+                'http://192.168.100.11/Hospital/api/Patient/SelectUser.php',
+                
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                }
+            ).then((response) => {
+                console.log(response.data);
+                setLoading(false);
+                setUser({
+                    ...user,
+                    NamePatient: response.data[1].NamePatient,
+                    SurnamesPatient: response.data[1].SurnamesPatient,
+                    Direction: response.data[1].Direction,
+                    Phone: response.data[1].Phone,
+                    NSS: response.data[1].NSS,
+                    
+                });
+                
+            })
+        }, 100);
+    }, [isLoading]);
+
 
 
 
@@ -39,23 +70,23 @@ const HomeUser=({navigation})=>{
             <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
                     <Text fontSize="20" fontWeight="bold" mt="3" >
                         {"   "}Name :
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">Andrea </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.NamePatient}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
                         {"   "}Last Name:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Reyes </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.SurnamesPatient}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}Direcction:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">lomas del ajedres </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Direction} </Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}Phone:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">123444455</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Phone}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}NSS:
-                        <Text color="#1b396a" textAlign="right" fontSize="18" fontWeight="black" >12345678910</Text>
+                        <Text color="#1b396a" textAlign="right" fontSize="18" fontWeight="black" >{user.NSS}</Text>
                     </Text>
             <Button
                 mt="2"

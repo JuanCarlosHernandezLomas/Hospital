@@ -21,7 +21,7 @@ const CreateUser=(navigate)=>{
         formDataforRequest.append('NSS', formData.NSS)
 //172.25.48.1
         const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/Patient/CreateUser.php', 
+            'http://172.16.34.42/Hospital/api/Patient/CreateUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {

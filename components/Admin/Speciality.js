@@ -20,7 +20,7 @@ const Speciality=()=>{
 
 
         const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/Admin/Speciality.php', 
+            'http://172.16.34.42/Hospital/api/Admin/Speciality.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {

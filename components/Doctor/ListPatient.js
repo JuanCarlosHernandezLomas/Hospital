@@ -1,10 +1,43 @@
 import { View,Text,ScrollView} from "native-base";
 import React from "react";
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-
+import { useEffect } from "react";
+import axios from "axios";
 
 
 const ListPatient=()=>{
+
+    
+    const [isLoading, setLoading] = React.useState();
+    const [user, setUser] = React.useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            const response = axios.get(
+                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
+                
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                }
+            ).then((response) => {
+                console.log(response.data[1]);
+                setLoading(false);
+                setUser({
+                    ...user,
+                    nombre: response.data[1].cupos,
+                    Apellido: response.data[1].dia,
+                    especialidad: response.data[1].especialidad,
+                    hora: response.data[1].horario,
+                    medico: response.data[1].medico,
+                    
+                });
+                
+            })
+        }, 100);
+    }, [isLoading]);
 const headers=['Paciente','Hora','dia','estatus'];
     const rows=[
         ['Maria','8:30','M','Carcelacion'],

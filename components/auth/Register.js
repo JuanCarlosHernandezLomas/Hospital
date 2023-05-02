@@ -19,7 +19,7 @@ const Register=({navigation})=>{
         formDataforRequest.append('Role', formData.Role)
 //172.16.4.219
         const response = await axios.post(
-            'http://192.168.100.239/Hospital/api/registrar.php', 
+            'http://172.16.34.42/Hospital/api/registrar.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
