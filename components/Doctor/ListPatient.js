@@ -1,4 +1,4 @@
-import { View,Text } from "native-base";
+import { View,Text,ScrollView} from "native-base";
 import React from "react";
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
@@ -14,7 +14,7 @@ const headers=['Paciente','Hora','dia','estatus'];
     
     
     return(
-        
+        <ScrollView backgroundColor={"#CECEE5"}>
         <View>
             <Text
              style={{
@@ -23,10 +23,10 @@ const headers=['Paciente','Hora','dia','estatus'];
                 marginTop: "20%"
             }}>
             Paciente</Text>
-            <Table borderStyle={{borderWidth: 1}}>
+            <Table borderStyle={{borderWidth: 1,borderColor: '#00BFFF'}}>
                 <Row data={headers}
                 style={{
-                    backgroundColor: 'lightgray',
+                    backgroundColor: '#87CEEB'
                 }}
                 height={40}
                 flexArr={[1,1,1,1]}
@@ -41,10 +41,13 @@ const headers=['Paciente','Hora','dia','estatus'];
                     textStyle={{
                         textAlign: 'center'
                     }}
-                    />
+                    style={{
+                        backgroundColor: 'white',
+                    }}/>
                 </TableWrapper>
             </Table>
-        </View>        
+        </View>  
+        </ScrollView>     
     );
 };
 

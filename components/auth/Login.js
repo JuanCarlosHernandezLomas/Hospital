@@ -1,18 +1,22 @@
 import React from "react";
-import { View,Text, Center, ScrollView,Input,VStack,Button, Box,FormControl,Link} from "native-base";
+import { View,Text, Center, ScrollView,Input,VStack,Button, Box,FormControl,Link,Image,} from "native-base";
 
 
 const Login=({navigation})=>{
+
+    const imageURI = require('../../assets/inicio.png');
     return(
 
-        <ScrollView>
+        <ScrollView backgroundColor={"#EAF2F8"}>
         <Center w="100%">
+        <Image mt="9" shadow={2} source={imageURI} alt="Logo Tecnm" style={{ width: 100, height: 100 }} size="xl" borderRadius={20} />
             <Text color="#1b396a" fontWeight="semibold" fontSize="15">Login</Text>
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
                         <Input p={2} placeholder="example@mail.com"
+                        backgroundColor={"white"}
                          borderRadius={30} />
                             <FormControl.HelperText>
                                 Enter the email
@@ -21,7 +25,8 @@ const Login=({navigation})=>{
                     <FormControl >
                         <FormControl.Label>Password</FormControl.Label>
                         <Input type="password" p={2} 
-                        placeholder="Mora than 8 caracters" 
+                        placeholder="Mora than 8 caracters"
+                        backgroundColor={"white"}
                         borderRadius={30} />
                             <FormControl.HelperText>
                                 The password must have a min of 8, one Capital and One special character

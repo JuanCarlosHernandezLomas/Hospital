@@ -27,6 +27,7 @@ const CreateDoctor=()=>{
 
         }
     return(
+        <ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={2} mt="2">
@@ -53,7 +54,8 @@ const CreateDoctor=()=>{
             <FormControl >
                 <FormControl.Label>Name </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                    color="black.400" 
+                    color="black.400"
+                    backgroundColor={"white"} 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
@@ -69,7 +71,8 @@ const CreateDoctor=()=>{
             <FormControl >
                 <FormControl.Label>Lastname </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" borderRadius={30} 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"} 
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -84,7 +87,8 @@ const CreateDoctor=()=>{
             <FormControl >
                 <FormControl.Label>specialidad </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione una especialidad" 
-                color="black.400"   borderRadius={30}  
+                color="black.400"   borderRadius={30} 
+                backgroundColor={"white"} 
                 data={data}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
@@ -121,6 +125,7 @@ const CreateDoctor=()=>{
             </VStack> 
             </Box>      
         </Center>
+        </ScrollView>
     );
 }
 export default CreateDoctor

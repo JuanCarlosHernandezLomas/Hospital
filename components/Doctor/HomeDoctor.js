@@ -42,6 +42,7 @@ const submit = async ()=>{
 
 
 return(
+    <ScrollView backgroundColor={"#CECEE5"}>
     <Center w="100%">
         <Box px="1" py="8" w="90%" maxW="290">
             <VStack space={2} mt="2">
@@ -65,64 +66,23 @@ return(
                             }}
                         />
                     </Center>
-        <FormControl >
-            <FormControl.Label>Name </FormControl.Label>
-            <Input p={2} placeholder="enter you name" 
-                color="black.400" 
-                borderRadius={30}
-                onChangeText={
-                value=>setData({
-                ...formData,
-                Name: value
-               })
-                }
-            />
-            <FormControl.HelperText>
-                nickname should contains atleast 6 characters
-            </FormControl.HelperText>
-        </FormControl>
-        <FormControl >
-            <FormControl.Label>Lastname </FormControl.Label>
-            <Input p={2} placeholder="enter you LastName" 
-            color="black.400" borderRadius={30} 
-            onChangeText={
-                value=>setData({
-                ...formData,
-                LastName: value
-               })
-             }
-            />
-            <FormControl.HelperText>
-                nickname should contains atleast 6 characters
-            </FormControl.HelperText>
-        </FormControl>
-        <FormControl >
-            <FormControl.Label> Time</FormControl.Label>
-            <Input p={2} placeholder="enter you schedule" 
-            color="black.400" borderRadius={30} 
-            onChangeText={
-                value=>setData({
-                ...formData,
-                Schedule: value
-               })
-             }
-            />
-            <FormControl.HelperText>
-                nickname should contains atleast 6 characters
-            </FormControl.HelperText>
-        </FormControl>
-        <FormControl >
-            <FormControl.Label>specialidad </FormControl.Label>
-            <SelectList p={2} placeholder="seleccione su especialidad" 
-            color="black.400"   borderRadius={30}  
-            data={data}
-            setSelected={setSelected}
-            dropdownItemStyles={{backgroundColor: 'white'}}
-            />
-            <FormControl.HelperText>
-                nickname should contains atleast 6 characters
-            </FormControl.HelperText>
-        </FormControl>
+                    <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
+                    <Text fontSize="20" fontWeight="bold" mt="3" >
+                        {"   "}Name :
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Francisco </Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
+                        {"   "}Last Name:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Loera </Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}Time:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> 8:00-22:00</Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}Specialidad:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">Neurologo</Text>
+                    </Text>
         <Button
             mt="2"
             size="lg"
@@ -147,6 +107,7 @@ return(
         </VStack> 
         </Box>      
     </Center>
+    </ScrollView>
 );
 }
 export default HomeDoctor

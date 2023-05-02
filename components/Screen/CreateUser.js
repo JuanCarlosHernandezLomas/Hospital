@@ -34,6 +34,7 @@ const CreateUser=(navigate)=>{
 
         }
     return(
+        <ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={2} mt="2">
@@ -60,7 +61,8 @@ const CreateUser=(navigate)=>{
             <FormControl >
                 <FormControl.Label>Name </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                    color="black.400" 
+                    color="black.400"
+                    backgroundColor={"white"} 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
@@ -76,7 +78,8 @@ const CreateUser=(navigate)=>{
             <FormControl >
                 <FormControl.Label>Lastname </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" borderRadius={30} 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"}
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -91,7 +94,8 @@ const CreateUser=(navigate)=>{
             <FormControl >
                 <FormControl.Label>Direcction </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" borderRadius={30} 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"} 
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -106,7 +110,8 @@ const CreateUser=(navigate)=>{
             <FormControl >
                 <FormControl.Label>Phone </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" borderRadius={30} 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"} 
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -121,7 +126,8 @@ const CreateUser=(navigate)=>{
             <FormControl >
                 <FormControl.Label>NSS </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" borderRadius={30} 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"}
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -157,6 +163,7 @@ const CreateUser=(navigate)=>{
             </VStack> 
             </Box>      
         </Center>
+        </ScrollView>
     );
 }
 export default CreateUser

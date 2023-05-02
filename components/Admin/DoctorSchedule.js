@@ -35,6 +35,7 @@ const DoctorSchedule=()=>{
 
         }
     return(
+        <ScrollView backgroundColor={"#EAF2F8"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={2} mt="2">
@@ -52,6 +53,7 @@ const DoctorSchedule=()=>{
                 <FormControl.Label>StartTime </FormControl.Label>
                 <Input p={2} placeholder="start Time" 
                     color="black.400" 
+                    backgroundColor={"white"} 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
@@ -67,7 +69,9 @@ const DoctorSchedule=()=>{
             <FormControl >
                 <FormControl.Label>EndTime</FormControl.Label>
                 <Input p={2} placeholder="end TIme" 
-                color="black.400" borderRadius={30} 
+                color="black.400" 
+                backgroundColor={"white"} 
+                borderRadius={30} 
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -82,7 +86,9 @@ const DoctorSchedule=()=>{
             <FormControl >
                 <FormControl.Label>Spaces</FormControl.Label>
                 <Input p={2} placeholder="end TIme" 
-                color="black.400" borderRadius={30} 
+                color="black.400"
+                backgroundColor={"white"} 
+                 borderRadius={30} 
                 onChangeText={
                     value=>setData({
                     ...formData,
@@ -118,6 +124,7 @@ const DoctorSchedule=()=>{
             </VStack> 
             </Box>      
         </Center>
+        </ScrollView>
     );
 }
 export default DoctorSchedule

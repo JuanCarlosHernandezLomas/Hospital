@@ -33,6 +33,7 @@ const Speciality=()=>{
 
         }
     return(
+        <ScrollView backgroundColor={"#EAF2F8"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={2} mt="2">
@@ -50,6 +51,7 @@ const Speciality=()=>{
                 <FormControl.Label>Specialidad </FormControl.Label>
                 <Input p={2} placeholder="specialidad" 
                     color="black.400" 
+                    backgroundColor={"white"} 
                     borderRadius={30}
                     onChangeText={
                     value=>setData({
@@ -86,6 +88,7 @@ const Speciality=()=>{
             </VStack> 
             </Box>      
         </Center>
+        </ScrollView>
     );
 }
 export default Speciality

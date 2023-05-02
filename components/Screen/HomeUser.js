@@ -1,9 +1,18 @@
+import axios from "axios";
 import { View,Text, Center, ScrollView,Input,VStack,Button, Box,FormControl} from "native-base";
 import React from "react";
+import { useEffect } from "react";
 import { Avatar } from 'react-native-elements';
 
 
+
+
 const HomeUser=({navigation})=>{
+
+
+
+
+
     return(
         <ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">
@@ -27,31 +36,27 @@ const HomeUser=({navigation})=>{
                 }}
              />
             </Center>
-            <FormControl >
-                <FormControl.Label>Name </FormControl.Label>
-                <Input p={2} placeholder="ANA" 
-                color="black.400" backgroundColor={"white"} borderRadius={30}  />
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>Lastname </FormControl.Label>
-                <Input p={2} placeholder="Gallardo Medina" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>Direcction </FormControl.Label>
-                <Input p={2} placeholder="Lomas del ajderez" 
-                color="black.400"backgroundColor={"white"} borderRadius={30} />
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>Phone </FormControl.Label>
-                <Input p={2} placeholder="449-132-2322" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-            </FormControl>
-            <FormControl >
-                <FormControl.Label>NSS </FormControl.Label>
-                <Input p={2} placeholder="12345678910" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-            </FormControl>
+            <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
+                    <Text fontSize="20" fontWeight="bold" mt="3" >
+                        {"   "}Name :
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">Andrea </Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
+                        {"   "}Last Name:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> Reyes </Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}Direcction:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">lomas del ajedres </Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}Phone:
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">123444455</Text>
+                    </Text>
+                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                        {"   "}NSS:
+                        <Text color="#1b396a" textAlign="right" fontSize="18" fontWeight="black" >12345678910</Text>
+                    </Text>
             <Button
                 mt="2"
                 size="lg"
