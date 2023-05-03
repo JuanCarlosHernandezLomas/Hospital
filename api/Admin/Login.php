@@ -3,6 +3,7 @@ include ("../conexion.php");
 $conexion = OpenCon();
 $Email = $_POST['Email'];
 $Passwords = $_POST['Passwords'];
+$Role = $_POST['Role'];
 
 $sql = "select * from usuarios WHERE 
 Email= '$Email'";

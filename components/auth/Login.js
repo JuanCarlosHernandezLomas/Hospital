@@ -38,7 +38,7 @@ const Login=({navigation})=>{
                         backgroundColor="#1b396a"
                         borderRadius={30}
                         
-                        onPress={() =>{navigation.navigate('UserTab')} }
+                        onPress={() =>{navigation.navigate('CreateUser')} }
                         >  
                         Login
                     </Button>

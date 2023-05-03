@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 
 
-const CreateUser=(navigate)=>{
+const EditUser=(navigate)=>{
     const navigation = useNavigation();
     const[formData,setData]=React.useState({})
     const [errors, setErrors] = React.useState({});
@@ -47,20 +47,6 @@ const CreateUser=(navigate)=>{
             })
             return false;
         }
-        if (!formData.NSS) {
-            setErrors({
-                ...errors,
-                NSS: 'NSS is required'
-            });
-            return false;
-        }
-        else if (formData.NSS.length < 12) {
-            setErrors({
-                ...errors,
-                NSS: 'NSS is to short'
-            })
-            return false;
-        }
         setErrors({})
         return true;
     };
@@ -75,10 +61,10 @@ const CreateUser=(navigate)=>{
         formDataforRequest.append('LastName', formData.LastName)
         formDataforRequest.append('Direction', formData.Direction)
         formDataforRequest.append('Phone', formData.Phone)
-        formDataforRequest.append('NSS', formData.NSS)
+    
 //172.25.48.1
         const response = await axios.post(
-            'http://192.168.100.1/Hospital/api/Patient/CreateUser.php', //172.16.34.42
+            'http://192.168.100.1/Hospital/api/Patient/EditUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -91,7 +77,7 @@ const CreateUser=(navigate)=>{
 
         }
     return(
-        <ScrollView backgroundColor={"#CECEE5"}>
+<ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={2} mt="2">
@@ -192,25 +178,6 @@ const CreateUser=(navigate)=>{
                   </FormControl.HelperText>
                 }
             </FormControl>
-            <FormControl isRequired isInvalid={'NSS' in errors}>
-                <FormControl.Label>NSS </FormControl.Label>
-                <Input p={2} placeholder="enter you NSS" 
-                color="black.400" borderRadius={30}
-                backgroundColor={"white"}
-                onChangeText={
-                    value=>setData({
-                    ...formData,
-                    NSS: value
-                   })
-                    }
-                />
-                {'NSS' in errors ?
-                  <FormControl.ErrorMessage>{errors.NSS}</FormControl.ErrorMessage> :
-                  <FormControl.HelperText>
-                           Nss should contains 12 characters
-                   </FormControl.HelperText>
-                 }
-            </FormControl>
             <Button
                 mt="2"
                 size="lg"
@@ -238,4 +205,4 @@ const CreateUser=(navigate)=>{
         </ScrollView>
     );
 }
-export default CreateUser
+export default EditUser

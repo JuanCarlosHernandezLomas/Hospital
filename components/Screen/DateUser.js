@@ -8,7 +8,9 @@ import { Image } from 'react-native-elements';
 const DateUser=()=>{
 
     const [selected, setSelected]= React.useState("");
-const [days, setDay]= React.useState("");
+
+    
+ 
 
 const data =[
     {key: '1', value: 'Gimena'},
@@ -62,9 +64,8 @@ const day=[
                 <FormControl.Label>day </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione un dia" 
                 color="black.400"  borderRadius={30} 
-                
                 data={day}
-                setDay={setDay}
+                setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
                 />
                 <FormControl.HelperText>
@@ -90,7 +91,7 @@ const day=[
             <Button
                 mt="2"
                 size="lg"
-                backgroundColor="#EB4365"
+                backgroundColor="#6495ED"
                 borderRadius={2}   
                 onPress= {()=>{
                     navigation.navigation('HomeUser')

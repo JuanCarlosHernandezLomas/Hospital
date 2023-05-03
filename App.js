@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
  //scren
  import CreateUser from "./components/Screen/CreateUser";
+ import EditUser from "./components/Screen/EditUser";
  import DateUser from "./components/Screen/DateUser";
  import QuestionSreen from "./components/Screen/QuestionScream";
  import Home from "./components/Screen/HomeScreen";
@@ -192,6 +193,13 @@ export default function App(){
           <Stack.Screen
           name="CreateUser"
           component={CreateUser}
+          options={{
+            headerBackVisible: true,
+          }}
+          />
+          <Stack.Screen
+          name="EditUser"
+          component={EditUser}
           options={{
             headerBackVisible: true,
           }}

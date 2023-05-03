@@ -22,17 +22,17 @@ const HomeUser=({navigation})=>{
                         'Content-Type': 'multipart/form-data',
                         "Access-control-Allow-origin": "*"
                     },
-                }
+                },
             ).then((response) => {
                 console.log(response.data);
                 setLoading(false);
                 setUser({
                     ...user,
-                    NamePatient: response.data[1].NamePatient,
-                    SurnamesPatient: response.data[1].SurnamesPatient,
-                    Direction: response.data[1].Direction,
-                    Phone: response.data[1].Phone,
-                    NSS: response.data[1].NSS,
+                    NamePatient: response.data[0].NamePatient,
+                    SurnamesPatient: response.data[0].SurnamesPatient,
+                    Direction: response.data[0].Direction,
+                    Phone: response.data[0].Phone,
+                    NSS: response.data[0].NSS,
                     
                 });
                 
@@ -70,31 +70,31 @@ const HomeUser=({navigation})=>{
             <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
                     <Text fontSize="20" fontWeight="bold" mt="3" >
                         {"   "}Name :
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.NamePatient}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> {user.NamePatient}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
                         {"   "}Last Name:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.SurnamesPatient}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> {user.SurnamesPatient}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}Direcction:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Direction} </Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> {user.Direction} </Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}Phone:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Phone}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black"> {user.Phone}</Text>
                     </Text>
                     <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
                         {"   "}NSS:
-                        <Text color="#1b396a" textAlign="right" fontSize="18" fontWeight="black" >{user.NSS}</Text>
+                        <Text color="#1b396a" textAlign="right" fontSize="18" fontWeight="black" > {user.NSS}</Text>
                     </Text>
             <Button
                 mt="2"
                 size="lg"
-                backgroundColor="#1b396a"
+                backgroundColor="#6495ED"
                 borderRadius={2}   
                 onPress= {()=>{
-                    navigation.navigate('CreateUser')
+                    navigation.navigate('EditUser')
                 }}
         >
             Editar

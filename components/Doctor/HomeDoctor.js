@@ -78,30 +78,30 @@ return(
                         />
                     </Center>
                     <Text mt="2" fontSize="25" color="#1b396a" fontWeight="bold" textAlign="center">{"   "}My Profile</Text>
-                    <Text fontSize="20" fontWeight="bold" mt="3" >
+                    <Text fontSize="20"  mt="3" >
                         {"   "}Name :
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Nombre}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" > {user.Nombre}</Text>
                     </Text>
-                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3">
+                    <Text fontSize="20"  borderTopWidth="1" mt="3">
                         {"   "}Last Name:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.Apellido}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" > {user.Apellido}</Text>
                     </Text>
-                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                    <Text fontSize="20"  borderTopWidth="1" mt="3" >
                         {"   "}Start:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.inicio}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" > {user.inicio}</Text>
                     </Text>
-                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                    <Text fontSize="20"  borderTopWidth="1" mt="3" >
                         {"   "}End:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.salida}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" > {user.salida}</Text>
                     </Text>
-                    <Text fontSize="20" fontWeight="bold" borderTopWidth="1" mt="3" >
+                    <Text fontSize="20"  borderTopWidth="1" mt="3" >
                         {"   "}Specialidad:
-                        <Text color="#1b396a" textAlign="left" fontSize="18" fontWeight="black">{user.especialidad}</Text>
+                        <Text color="#1b396a" textAlign="left" fontSize="18" > {user.especialidad}</Text>
                     </Text>
         <Button
             mt="2"
             size="lg"
-            backgroundColor="#1b396a"
+            backgroundColor="#6495ED"
             borderRadius={2}   
             onPress= {()=>navigation.navigate('CreateDoctor')}
         >

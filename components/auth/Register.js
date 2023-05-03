@@ -9,17 +9,48 @@ const Register=({navigation})=>{
     const imageURI = require('../../assets/inicio.png');
     const [Roles, setRoles]= React.useState("");
     const[formData,setData]=React.useState({})
+    const [errors, setErrors] = React.useState({});
+
+     const validate = () => {
+        if (!formData.Email) {
+            setErrors({
+                ...errors,
+                Email: 'Email is required'
+            });
+            return false;
+        } else if (formData.Email.length < 3) {
+            setErrors({
+                ...errors,
+                Email: 'Email is to short'
+            })
+            return false;
+        }
+
+        if (!formData.Passwords || formData.Passwords.length < 3) {
+            setErrors({
+                ...errors,
+                Passwords: 'Password is empty'
+            })
+            return false;
+        }
+          setErrors({})
+        return true;
+    };
+
 
     const submit = async ()=>{
-        console.log("Submitted", formData)
-        setData({ ...formData, action: 'login' })
-        const formDataforRequest = new FormData()
-        formDataforRequest.append('Email', formData.Email)
-        formDataforRequest.append('Password', formData.Passwords)
-        formDataforRequest.append('Role', formData.Role)
-//172.16.4.219
-        const response = await axios.post(
-            'http://172.16.34.42/Hospital/api/registrar.php', //172.16.34.42
+        if(!validate())
+        {
+            validate() ? console.log('submitted', formData) :
+            console.log('Validation Failed', errors)
+            setData({ ...formData, action: 'login' })
+            const formDataforRequest = new FormData()
+            formDataforRequest.append('Email', formData.Email)
+            formDataforRequest.append('Password', formData.Passwords)
+            formDataforRequest.append('Role', formData.Role)
+
+            const response = await axios.post(
+            'http://192.168.100.11/Hospital/api/registrar.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -28,9 +59,11 @@ const Register=({navigation})=>{
                 },
                 transformRequest: formData => formDataforRequest,
             }
-        )
-
+            )
+        }else{
+         console.log("error")
         }
+    }
 
        
            
@@ -51,7 +84,7 @@ const Register=({navigation})=>{
             <Text color="#1b396a" fontWeight="semibold" fontSize="15">Register</Text>
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={3} mt="5">
-                    <FormControl>
+                    <FormControl isRequired isInvalid={'Email' in errors}>
                         <FormControl.Label>Email</FormControl.Label>
                         <Input p={2} placeholder="example@mail.com"
                          borderRadius={30}
@@ -64,11 +97,14 @@ const Register=({navigation})=>{
                             })
                          }
                          />
+                        {'Email' in errors ?
+                            <FormControl.ErrorMessage>{errors.Email}</FormControl.ErrorMessage> :
                             <FormControl.HelperText>
-                                Enter the email
-                            </FormControl.HelperText>
+                            Enter the email
+                          </FormControl.HelperText>
+                        }
                     </FormControl>
-                    <FormControl >
+                    <FormControl isRequired isInvalid={'Passwords' in errors}>
                         <FormControl.Label>Password</FormControl.Label>
                         <Input type="password" p={2} 
                         placeholder="Mora than 8 caracters" 
@@ -82,9 +118,12 @@ const Register=({navigation})=>{
                             })
                          }
                         />
-                            <FormControl.HelperText>
+                           {'Passwords' in errors ?
+                                <FormControl.ErrorMessage>{errors.Passwords}</FormControl.ErrorMessage> :
+                                <FormControl.HelperText>
                                 The password must have a min of 8, one Capital and One special character
-                            </FormControl.HelperText>
+                                </FormControl.HelperText>
+                            }
                     </FormControl>
                     <FormControl>
                         <FormControl.Label>Role</FormControl.Label>

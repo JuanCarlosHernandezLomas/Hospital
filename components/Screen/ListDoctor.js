@@ -69,8 +69,8 @@ const ListDoctor=()=>{
                 />
                 <TableWrapper>
                     <Rows data={rows}
-                    heightArr={[28,28,28,28,,28,28]}
-                    flexArr={[0.5,0.7,0.5,1,0.6,0.6]}
+                    heightArr={[40,40,40,40,,40,40]}
+                    flexArr={[0.6,0.8,0.5,1,0.6,0.6]}
                     textStyle={{
                         textAlign: 'center'
                     }}
