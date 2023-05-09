@@ -1,6 +1,7 @@
 import React from "react";
 import { View,Text, Center, ScrollView,Input,VStack,Button, Box,FormControl,Link,Image,} from "native-base";
 import { SelectList } from "react-native-dropdown-select-list";
+import { Alert } from "react-native";
 import axios from "axios";
 
 
@@ -12,7 +13,18 @@ const Register=({navigation})=>{
     const [errors, setErrors] = React.useState({});
 
      const validate = () => {
-        if (!formData.Email) {
+        if(!formData.Email && !formData.Passwords && !formData.Role){
+            setErrors({
+                ...errors,
+                Email: 'Email is required',
+                Passwords: 'Password is required',
+                Role: 'Role is required',
+                
+
+            });
+            return false;
+        }
+        else if (!formData.Email) {
             setErrors({
                 ...errors,
                 Email: 'Email is required'
@@ -39,10 +51,8 @@ const Register=({navigation})=>{
 
 
     const submit = async ()=>{
-        if(!validate())
-        {
-            validate() ? console.log('submitted', formData) :
-            console.log('Validation Failed', errors)
+        console.log(validate())
+       if(validate()){
             setData({ ...formData, action: 'login' })
             const formDataforRequest = new FormData()
             formDataforRequest.append('Email', formData.Email)
@@ -50,7 +60,7 @@ const Register=({navigation})=>{
             formDataforRequest.append('Role', formData.Role)
 
             const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/registrar.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/registrar.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -60,10 +70,15 @@ const Register=({navigation})=>{
                 transformRequest: formData => formDataforRequest,
             }
             )
-        }else{
-         console.log("error")
-        }
+            Alert.alert('informacion correcta', 'los datos se han guaradado',
+        [{text: 'Ok', onPress: () => console.log('pasas')}])
     }
+    else{
+        Alert.alert('invalid information', 'please check the fields',
+        [{text: 'Ok', onPress: () => console.log('alert closed')}])
+
+    }
+}
 
        
            

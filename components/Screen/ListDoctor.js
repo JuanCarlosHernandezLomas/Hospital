@@ -12,7 +12,7 @@ const ListDoctor=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/DateDoctor.php',
+                'http://192.168.100.5/Hospital/api/Doctor/DateDoctor.php',
                 
                 {
                     headers: {
@@ -21,15 +21,25 @@ const ListDoctor=()=>{
                     },
                 }
             ).then((response) => {
-                console.log(response.data[2]);
+                console.log(response.data);
                 setLoading(false);
                 setUser({
                     ...user,
-                    cupos: response.data[2].cupos,
-                    dia: response.data[2].dia,
-                    especialidad: response.data[2].especialidad,
-                    hora: response.data[2].horario,
-                    medico: response.data[2].medico,
+                    cupos: response.data[0].cupos,
+                    dia: response.data[0].dia,
+                    especialidad: response.data[0].especialidad,
+                    hora: response.data[0].horario,
+                    medico: response.data[0].medico,
+                    cu: response.data[1].cupos,
+                    di: response.data[1].dia,
+                    es: response.data[1].especialidad,
+                    ho: response.data[1].horario,
+                    me: response.data[1].medico,
+                    cup: response.data[2].cupos,
+                    dias: response.data[2].dia,
+                    esp: response.data[2].especialidad,
+                    hor: response.data[2].horario,
+                    medi: response.data[2].medico,
                     
                 });
                 
@@ -40,8 +50,8 @@ const ListDoctor=()=>{
 
     const headers=['Medico','Horario','dias','especialidad','espacios','#'   ];
     const rows=[
-        ['Maria','8:00-3:00','L-V','Cardiologo','20','presionar'],
-        ['Laura','12:00-5:00','L-x','Medico General','10','presionar'],
+        [user.me,user.ho,user.di,user.es,user.cu,'presionar'],
+        [user.medi,user.hor,user.dias,user.esp,user.cup,'presionar'],
         [user.medico,user.hora,user.dia,user.especialidad,user.cupos,'presionar']
     ]
     

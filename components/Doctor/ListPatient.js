@@ -14,7 +14,7 @@ const ListPatient=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
+                'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
                 
                 {
                     headers: {
@@ -23,15 +23,15 @@ const ListPatient=()=>{
                     },
                 }
             ).then((response) => {
-                console.log(response.data[1]);
+                console.log(response.data[0]);
                 setLoading(false);
                 setUser({
                     ...user,
-                    nombre: response.data[1].cupos,
-                    Apellido: response.data[1].dia,
-                    especialidad: response.data[1].especialidad,
-                    hora: response.data[1].horario,
-                    medico: response.data[1].medico,
+                    nombre: response.data[0].cupos,
+                    Apellido: response.data[0].dia,
+                    especialidad: response.data[0].especialidad,
+                    hora: response.data[0].horario,
+                    medico: response.data[0].medico,
                     
                 });
                 

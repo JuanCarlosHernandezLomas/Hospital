@@ -2,21 +2,84 @@ import { View, Text, Center, ScrollView,Input,VStack,Button, Box,FormControl } f
 import React from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Image } from 'react-native-elements';
+import { Alert } from "react-native";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 
 const DateUser=()=>{
 
-    const [selected, setSelected]= React.useState("");
+        const[formData,setData]=React.useState({})
+        const [isLoading, setLoading] = React.useState();
+        const [selected, setSelected]= React.useState({});
+        const [errors, setErrors] = React.useState({});
+        const [user, setUser] = React.useState([]);
+
+        const validate = () => {
+           if(!formData.NameDoctor && !formData.SurnamesDoctor ){
+               setErrors({
+                   ...errors,
+                   NameDoctor: 'Name is required',
+                   SurnamesDoctor: 'Last is required',
+                   
+               });
+               return false;
+           }
+           else if (!formData.NameDoctor) {
+               setErrors({
+                   ...errors,
+                   NameDoctor: 'Name is required'
+               });
+               return false;
+           } 
+           if (!formData.SurnamesDoctor) {
+               setErrors({
+                   ...errors,
+                   SurnamesDoctor: 'Last is required'
+               });
+               return false;
+           }
+
+           setErrors({})
+           return true;
+       };
+
+       useEffect(() => {
+        setTimeout(() => {
+            const response = axios.get(
+                'http://192.168.100.5/Hospital/api/Doctor/AllDoctor.php',
+                
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Access-control-Allow-origin": "*"
+                    },
+                },
+            ).then((response) => {
+                console.log(response.data);
+                setUser({
+                    ...user,
+                    medico: response.data[0].medico,
+                    doctor: response.data[1].medico,
+                    doc: response.data[2].medico,
+                    med: response.data[3].medico,
+                });
+                
+
+                
+            })
+        }, 100);
+    } ,[isLoading]);
 
     
  
 
 const data =[
-    {key: '1', value: 'Gimena'},
-    {key: '2', value: 'Luis'},
-    {key: '3', value: 'Raul'},
-    {key: '4', value: 'Melisa'},
+    {key: '1', value: user.medico},
+    {key: '2', value: user.doctor},
+    {key: '3', value: user.doc},
+    {key: '4', value: user.med},
 ];
 
 const day=[

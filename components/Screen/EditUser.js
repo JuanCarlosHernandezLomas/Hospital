@@ -2,6 +2,7 @@ import React from "react";
 import { View,Text, Center,ScrollView,Input,VStack,Button, Box,FormControl} from "native-base";
 import { Avatar } from 'react-native-elements';
 import axios from "axios";
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -46,6 +47,19 @@ const EditUser=(navigate)=>{
                 Phone: 'Phone is to short'
             })
             return false;
+        }if (!formData.NSS) {
+            setErrors({
+                ...errors,
+                NSS: 'NSS is required'
+            });
+            return false;
+        }
+        else if (formData.NSS.length < 12) {
+            setErrors({
+                ...errors,
+                NSS: 'NSS is NOT equal'
+            })
+            return false;
         }
         setErrors({})
         return true;
@@ -61,10 +75,11 @@ const EditUser=(navigate)=>{
         formDataforRequest.append('LastName', formData.LastName)
         formDataforRequest.append('Direction', formData.Direction)
         formDataforRequest.append('Phone', formData.Phone)
+        formDataforRequest.append('NSS', formData.NSS)
     
 //172.25.48.1
         const response = await axios.post(
-            'http://192.168.100.1/Hospital/api/Patient/EditUser.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Patient/EditUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -74,6 +89,8 @@ const EditUser=(navigate)=>{
                 transformRequest: formData => formDataforRequest,
             }
         )
+        Alert.alert('informacion correcta', 'los datos se han guaradado',
+        [{text: 'Ok', onPress: () => console.log('pasas')}])
 
         }
     return(
@@ -177,6 +194,25 @@ const EditUser=(navigate)=>{
                          Phone should contains atleast 10 characters
                   </FormControl.HelperText>
                 }
+            </FormControl>
+            <FormControl isRequired isInvalid={'NSS' in errors}>
+                <FormControl.Label>NSS </FormControl.Label>
+                <Input p={2} placeholder="enter you NSS" 
+                color="black.400" borderRadius={30}
+                backgroundColor={"white"}
+                onChangeText={
+                    value=>setData({
+                    ...formData,
+                    NSS: value
+                   })
+                    }
+                />
+                {'NSS' in errors ?
+                  <FormControl.ErrorMessage>{errors.NSS}</FormControl.ErrorMessage> :
+                  <FormControl.HelperText>
+                           Nss should contains 12 characters
+                   </FormControl.HelperText>
+                 }
             </FormControl>
             <Button
                 mt="2"

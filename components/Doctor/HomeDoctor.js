@@ -15,7 +15,7 @@ const HomeDoctor=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
+                'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
                 
                 {
                     headers: {
@@ -28,27 +28,17 @@ const HomeDoctor=()=>{
                 setLoading(false);
                 setUser({
                     ...user,
-                    Nombre: response.data[1].Nombre,
-                    Apellido: response.data[1].Apellido,
-                    especialidad: response.data[1].especialidad,
-                    inicio: response.data[1].inicio,
-                    salida: response.data[1].salida,
+                    Nombre: response.data[0].Nombre,
+                    Apellido: response.data[0].Apellido,
+                    especialidad: response.data[0].especialidad,
+                    inicio: response.data[0].inicio,
+                    salida: response.data[0].salida,
                     
                 });
                 
             })
         }, 100);
     }, [isLoading]);
-
-
-
-    
-    const data =[
-        {key: '1', value: 'Cardiologo'},
-        {key: '2', value: 'Neurologo'},
-        {key: '3', value: 'Traumatologo'},
-        {key: '4', value: 'Medico General'},
-    ];
 
 
 
