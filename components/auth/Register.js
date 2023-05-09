@@ -8,7 +8,7 @@ import axios from "axios";
 const Register=({navigation})=>{
 
     const imageURI = require('../../assets/inicio.png');
-    const [Roles, setRoles]= React.useState("");
+     const [selected, setSelected]= React.useState({});
     const[formData,setData]=React.useState({})
     const [errors, setErrors] = React.useState({});
 
@@ -57,10 +57,10 @@ const Register=({navigation})=>{
             const formDataforRequest = new FormData()
             formDataforRequest.append('Email', formData.Email)
             formDataforRequest.append('Password', formData.Passwords)
-            formDataforRequest.append('Role', formData.Role)
+            formDataforRequest.append('Role', selected.Role)
 
             const response = await axios.post(
-            'http://192.168.100.5/Hospital/api/registrar.php', //172.16.34.42
+            'http://192.168.100.11/Hospital/api/registrar.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -84,7 +84,7 @@ const Register=({navigation})=>{
            
         
 
-    const Role=[
+    const data=[
         {key: '1', value: 'Paciente'},
         {key: '2', value: 'Doctor'},
         {key: '3', value: 'Admin'},
@@ -142,20 +142,19 @@ const Register=({navigation})=>{
                     </FormControl>
                     <FormControl>
                         <FormControl.Label>Role</FormControl.Label>
-                        <Input p={2} placeholder="Paciente"
-                         borderRadius={30}
-                         backgroundColor={"white"}
-                         onChangeText={
-                            value=>setData({
-                                ...formData,
-                                Role: value
-
-                            })
-                         }
-                         />
-                            <FormControl.HelperText>
-                                Enter the Role
-                            </FormControl.HelperText>
+                        <SelectList p={2} placeholder="seleccione su role" 
+                        color="black.400"   borderRadius={30} 
+                        backgroundColor={"white"} 
+                        search={true}
+                        data={data}
+                        setSelected={setSelected}
+                        dropdownItemStyles={{backgroundColor: 'white'}}
+                        onSelect={() =>setSelected({
+                            ...selected,
+                            Role:selected
+                         })}
+                        />
+                
                     </FormControl>
                     <Button 
                         mt="2"
