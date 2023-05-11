@@ -3,8 +3,6 @@ include ("conexion.php");
 $conexion = OpenCon();
 $Email = $_POST['Email'];
 $Password = $_POST['Password'];
-$Role=$_POST['Role'];
-    if($_POST['action'] == 'login'){
         $sql = "select Role from usuarios WHERE Email = '$Email' and Passwords = '$Password'";
         if($result = $conexion->query($sql)){
             for(
@@ -15,5 +13,4 @@ $Role=$_POST['Role'];
            
              echo json_encode($set);
                     }
-                }
 ?>

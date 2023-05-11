@@ -14,12 +14,14 @@ import { createStackNavigator } from '@react-navigation/stack';
  import HomeUser from "./components/Screen/HomeUser";
  import Register from "./components/auth/Register";
  import Login from "./components/auth/Login";
+ import ChangePassword from "./components/auth/ChangePaassword";
  import ListPatient from "./components/Doctor/ListPatient";
  import HomeDoctor from "./components/Doctor/HomeDoctor";
 import DateDoctor from "./components/Doctor/DateDoctor";
 import CreateDoctor from "./components/Doctor/CreateDoctor";
 import DoctorSchedule from "./components/Admin/DoctorSchedule";
 import Speciality from "./components/Admin/Speciality";
+import Selectschedule from "./components/Admin/Selectschedule";
 import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
@@ -141,6 +143,15 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
         headerShown: false,
       }}/>
       <Tab.Screen 
+      name="Selectschedule" 
+      component={Selectschedule}
+      options={{
+        tabBarIcon:({})=>(
+          <Fontisto name="date" size={24} color="black" />
+        ),
+        headerShown: false,
+      }}/>
+      <Tab.Screen 
       name="Speciality" 
       component={Speciality}
       options={{
@@ -176,6 +187,11 @@ export default function App(){
         component={Login}
         options={{headerShown: false}}
         />
+          <Stack.Screen
+            name="ChangePassword"
+            component={ChangePassword}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
           name="UserTab"
           component={UserTab}

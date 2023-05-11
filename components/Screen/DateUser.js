@@ -15,32 +15,55 @@ const DateUser=()=>{
         const [selected, setSelected]= React.useState({});
         const [errors, setErrors] = React.useState({});
         const [user, setUser] = React.useState([]);
+        
 
         const validate = () => {
-           if(!formData.NameDoctor && !formData.SurnamesDoctor ){
+           if(!formData.Doctor && !formData.Day && !formData.Time && !formData.NSS ){
                setErrors({
                    ...errors,
-                   NameDoctor: 'Name is required',
-                   SurnamesDoctor: 'Last is required',
+                   Doctor: 'Name is required',
+                   Day: 'Last is required',
+                   Time: 'Time is required',
+                   NSS: 'NSS is required'
                    
                });
                return false;
            }
-           else if (!formData.NameDoctor) {
+           else if (!formData.Doctor) {
                setErrors({
                    ...errors,
-                   NameDoctor: 'Name is required'
+                   Doctor: 'Doctor is empty'
                });
                return false;
            } 
-           if (!formData.SurnamesDoctor) {
+           if (!formData.Day) {
                setErrors({
                    ...errors,
-                   SurnamesDoctor: 'Last is required'
+                   Day: 'Day is empty'
                });
                return false;
            }
-
+           if (!formData.Time) {
+            setErrors({
+                ...errors,
+                Time: 'Day is empty'
+            });
+            return false;
+        }
+        if (!formData.NSS) {
+            setErrors({
+                ...errors,
+                NSS: 'NSS is empty'
+            });
+            return false;
+        }
+        else if (formData.NSS.length < 12) {
+            setErrors({
+                ...errors,
+                NSS: 'NSS is to short'
+            })
+            return false;
+        }
            setErrors({})
            return true;
        };
@@ -48,7 +71,7 @@ const DateUser=()=>{
        useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.5/Hospital/api/Doctor/AllDoctor.php',
+                'http://192.168.100.11/Hospital/api/Doctor/AllDoctor.php',
                 
                 {
                     headers: {
@@ -72,8 +95,63 @@ const DateUser=()=>{
         }, 100);
     } ,[isLoading]);
 
+    const submit = async ()=>{
+        
+            const formDataforRequest = new FormData()
+            formDataforRequest.append("NSS",formData.NSS)
+            const response = await axios.post(
+                'http://192.168.100.11/Hospital/api/Patient/SelectNss.php',
+                    formDataforRequest,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            "Access-control-Allow-origin": "*"
+                        },
+                        transformRequest: formData => formDataforRequest,
+                    }
+            ).then((response) =>{
+            console.log(formDataforRequest)
+            console.log(response.data);
+            setUser({
+                ...user,
+                paciente: response.data[0].Id,
+            });
+            console.log(user.paciente)
+            console.log(validate())
+            if(validate()){     
+            formDataforRequest.append('Doctor', formData.Doctor)
+            formDataforRequest.append('Day', formData.Day)
+            formDataforRequest.append('Time', formData.Time)
+            formDataforRequest.append('paciente', response.data[0].Id)
+            console.log(formDataforRequest)
+            const respuesta =  axios.post(
+                'http://192.168.100.11/Hospital/api/Patient/CreateDate.php',
+                    formDataforRequest,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            "Access-control-Allow-origin": "*"
+                        },
+                        transformRequest: formData => formDataforRequest,
+                    }
+            )
+            Alert.alert('informacion correcta', 'los datos se han guaradado',
+            [{text: 'Ok', onPress: () => console.log('pasas')}])
     
- 
+            }
+            else{
+                 Alert.alert('invalid information', 'please check the fields',
+            [{text: 'Ok', onPress: () => console.log('alert closed')}])
+    
+    
+            }            
+
+            }
+
+            )
+
+    }
+
 
 const data =[
     {key: '1', value: user.medico},
@@ -83,18 +161,19 @@ const data =[
 ];
 
 const day=[
-    {key: '1', value: 'Lunes'},
-    {key: '2', value: 'Martes'},
-    {key: '3', value: 'Miercoles'},
-    {key: '4', value: 'Jueves'},
-    {key: '5', value: 'Viernes'},
-    {key: '6', value: 'sabado'},
-    {key: '7', value: 'Domingo'},
+    {key: 'L', value: 'Lunes'},
+    {key: 'M', value: 'Martes'},
+    {key: 'X', value: 'Miercoles'},
+    {key: 'J', value: 'Jueves'},
+    {key: 'V', value: 'Viernes'},
+    {key: 'S', value: 'sabado'},
+    {key: 'D', value: 'Domingo'},
     
 ]
+
     return(
         <ScrollView backgroundColor={"#CECEE5"}>
-<Center w="100%">
+        <Center w="100%">
             <Box px="1" py="8" w="90%" maxW="290">
             <VStack space={2} mt="2">
             <Text
@@ -111,54 +190,88 @@ const day=[
                 style={{ width: 150, height: 150 }}
                 backgroundColor={"#CECEE5"}/>
             </Center>
-            <FormControl >
+            <FormControl isRequired isInvalid={'Doctor' in errors}>
                 <FormControl.Label>Doctor </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione un doctor" 
                 color="black.400"   borderRadius={30}  
                 data={data}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
+                onSelect={() =>setData({
+                    ...formData,
+                    Doctor:selected
+                })}
                 />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
+               {'Doctor' in errors ?
+                 <FormControl.ErrorMessage>{errors.Doctor}</FormControl.ErrorMessage> :
+                 <FormControl.HelperText>
+                        select a doctor
+                  </FormControl.HelperText>
+                }
             </FormControl>
-            <FormControl >
+            <FormControl isRequired isInvalid={'Day' in errors}>
                 <FormControl.Label>day </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione un dia" 
                 color="black.400"  borderRadius={30} 
                 data={day}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
+                onSelect={() =>setData({
+                    ...formData,
+                    Day:selected
+                })}
                 />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
+               {'Day' in errors ?
+                 <FormControl.ErrorMessage>{errors.Day}</FormControl.ErrorMessage> :
+                 <FormControl.HelperText>
+                    select a Day
+                  </FormControl.HelperText>
+                }
             </FormControl>
-            <FormControl >
+            <FormControl isRequired isInvalid={'Time' in errors}>
                 <FormControl.Label>hora</FormControl.Label>
                 <Input p={2} placeholder="ingrese una hora" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-                <FormControl.HelperText>
-                    nickname should contains atleast 6 characters
-                </FormControl.HelperText>
+                color="black.400" backgroundColor={"white"} 
+                borderRadius={30} 
+                onChangeText={
+                    value=>setData({
+                    ...formData,
+                    Time: value
+                   })
+                    }
+                />
+               {'Time' in errors ?
+                 <FormControl.ErrorMessage>{errors.Time}</FormControl.ErrorMessage> :
+                 <FormControl.HelperText>
+                        enter an hour
+                  </FormControl.HelperText>
+                }
             </FormControl>
-            <FormControl >
+            <FormControl isRequired isInvalid={'NSS' in errors}>
                 <FormControl.Label>NSS </FormControl.Label>
                 <Input p={2} placeholder="enter you name" 
-                color="black.400" backgroundColor={"white"} borderRadius={30} />
-                <FormControl.HelperText>
-                    Nss should contains 12 characters
-                </FormControl.HelperText>
+                color="black.400" backgroundColor={"white"} 
+                borderRadius={30} 
+                onChangeText={
+                    value=>setData({
+                    ...formData,
+                    NSS: value
+                   })
+                    }
+                />
+               {'NSS' in errors ?
+                 <FormControl.ErrorMessage>{errors.NSS}</FormControl.ErrorMessage> :
+                 <FormControl.HelperText>
+                        enter an NSS
+                  </FormControl.HelperText>
+                }
             </FormControl>
             <Button
                 mt="2"
                 size="lg"
                 backgroundColor="#6495ED"
                 borderRadius={2}   
-                onPress= {()=>{
-                    navigation.navigation('HomeUser')
-                }}
+                onPress={submit}
         >
             Generar cita 
         </Button>
@@ -181,4 +294,4 @@ const day=[
     );
 };
 
-export default DateUser;
+export default DateUser

@@ -18,11 +18,12 @@ const CreateDoctor=()=>{
         const [user, setUser] = React.useState([]);
 
         const validate = () => {
-           if(!formData.NameDoctor && !formData.SurnamesDoctor ){
+           if(!formData.NameDoctor && !formData.SurnamesDoctor && !formData.Specialty ){
                setErrors({
                    ...errors,
                    NameDoctor: 'Name is required',
                    SurnamesDoctor: 'Last is required',
+                   Specialty: 'Specialty is required'
                    
                });
                return false;
@@ -41,7 +42,13 @@ const CreateDoctor=()=>{
                });
                return false;
            }
-
+           if (!formData.Specialty) {
+            setErrors({
+                ...errors,
+                Specialty: 'specialty is empty'
+            });
+            return false;
+        }
            setErrors({})
            return true;
        };
@@ -49,7 +56,7 @@ const CreateDoctor=()=>{
        useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.5/Hospital/api/Doctor/Specialty.php',
+                'http://192.168.100.11/Hospital/api/Doctor/Specialty.php',
                 
                 {
                     headers: {
@@ -77,8 +84,8 @@ const CreateDoctor=()=>{
    
         
         const data =[
-            {key: '1', value: user.especialidad},
-            {key: '2', value: user.Name},
+            {key: '2', value: user.especialidad},
+            {key: '1', value: user.Name},
             {key: '3', value: user.valor},
             {key: '4', value: user.prueba},
         ];
@@ -93,7 +100,7 @@ const CreateDoctor=()=>{
             formDataforRequest.append('Specialty', selected.Specialty)
 
             const response = await axios.post(
-                'http://192.168.100.5/Hospital/api/Doctor/CreateDoctor.php', //172.16.34.42
+                'http://192.168.100.11/Hospital/api/Doctor/CreateDoctor.php', //172.16.34.42
                 formDataforRequest,
                 {
                     headers: {
@@ -179,7 +186,7 @@ const CreateDoctor=()=>{
                   </FormControl.HelperText>
                 }
             </FormControl>
-            <FormControl >
+            <FormControl isRequired isInvalid={'Specialty' in errors}>
                 <FormControl.Label>specialidad </FormControl.Label>
                 <SelectList p={2} placeholder="seleccione una especialidad" 
                 color="black.400"   borderRadius={30} 
@@ -193,7 +200,12 @@ const CreateDoctor=()=>{
                     Specialty:selected
                 })}
                 />
-                         
+                  {'Specialty' in errors ?
+                 <FormControl.ErrorMessage>{errors.Specialty}</FormControl.ErrorMessage> :
+                 <FormControl.HelperText>
+                        select a specialty
+                  </FormControl.HelperText>
+                }                         
              </FormControl>
             <Button
                 mt="2"

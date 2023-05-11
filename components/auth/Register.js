@@ -37,11 +37,17 @@ const Register=({navigation})=>{
             })
             return false;
         }
-
         if (!formData.Passwords || formData.Passwords.length < 3) {
             setErrors({
                 ...errors,
                 Passwords: 'Password is empty'
+            })
+            return false;
+        }
+        if (!formData.Role) {
+            setErrors({
+                ...errors,
+                Role: 'Password is empty'
             })
             return false;
         }
@@ -57,7 +63,7 @@ const Register=({navigation})=>{
             const formDataforRequest = new FormData()
             formDataforRequest.append('Email', formData.Email)
             formDataforRequest.append('Password', formData.Passwords)
-            formDataforRequest.append('Role', selected.Role)
+            formDataforRequest.append('Role', formData.Role)
 
             const response = await axios.post(
             'http://192.168.100.11/Hospital/api/registrar.php', //172.16.34.42
@@ -71,7 +77,7 @@ const Register=({navigation})=>{
             }
             )
             Alert.alert('informacion correcta', 'los datos se han guaradado',
-        [{text: 'Ok', onPress: () => console.log('pasas')}])
+        [{text: 'Ok', onPress: () => {navigation.navigate('Login')}}])
     }
     else{
         Alert.alert('invalid information', 'please check the fields',
@@ -140,7 +146,7 @@ const Register=({navigation})=>{
                                 </FormControl.HelperText>
                             }
                     </FormControl>
-                    <FormControl>
+                    <FormControl isRequired isInvalid={'Role' in errors}>
                         <FormControl.Label>Role</FormControl.Label>
                         <SelectList p={2} placeholder="seleccione su role" 
                         color="black.400"   borderRadius={30} 
@@ -149,12 +155,17 @@ const Register=({navigation})=>{
                         data={data}
                         setSelected={setSelected}
                         dropdownItemStyles={{backgroundColor: 'white'}}
-                        onSelect={() =>setSelected({
-                            ...selected,
+                        onSelect={() =>setData({
+                            ...formData,
                             Role:selected
                          })}
                         />
-                
+                           {'Role' in errors ?
+                                <FormControl.ErrorMessage>{errors.Role}</FormControl.ErrorMessage> :
+                                <FormControl.HelperText>
+                                Select a Role
+                                </FormControl.HelperText>
+                            }
                     </FormControl>
                     <Button 
                         mt="2"

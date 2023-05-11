@@ -13,7 +13,19 @@ const EditUser=(navigate)=>{
     const [errors, setErrors] = React.useState({});
 
      const validate = () => {
-        if (!formData.Name) {
+        if(!formData.Name && !formData.LastName && !formData.Direction&& !formData.Phone && !formData.NSS){
+            setErrors({
+                ...errors,
+                Name: 'Name is required',
+                LastName: 'Last is required',
+                Direction:'Direccion is required',
+                Phone: 'Phone is required',
+                NSS: 'NSS is required'
+
+            });
+            return false;
+        }
+        else  if (!formData.Name) {
             setErrors({
                 ...errors,
                 Name: 'Name is required'
@@ -67,8 +79,8 @@ const EditUser=(navigate)=>{
 
 
     const submit = async ()=>{
-        validate() ? console.log('submitted', formData) :
-        console.log('Validation Failed', errors)
+    console.log(validate())
+       if(validate()){
         setData({ ...formData, action: 'login' })
         const formDataforRequest = new FormData()
         formDataforRequest.append('Name', formData.Name)
@@ -79,7 +91,7 @@ const EditUser=(navigate)=>{
     
 //172.25.48.1
         const response = await axios.post(
-            'http://192.168.100.5/Hospital/api/Patient/EditUser.php', //172.16.34.42
+            'http://192.168.100.11/Hospital/api/Patient/EditUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -93,6 +105,14 @@ const EditUser=(navigate)=>{
         [{text: 'Ok', onPress: () => console.log('pasas')}])
 
         }
+        else{
+            Alert.alert('invalid information', 'please check the fields',
+        [{text: 'Ok', onPress: () => console.log('alert closed')}])
+
+        }
+
+    }
+
     return(
 <ScrollView backgroundColor={"#CECEE5"}>
         <Center w="100%">

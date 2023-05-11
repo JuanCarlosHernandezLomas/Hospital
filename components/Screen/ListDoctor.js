@@ -12,7 +12,7 @@ const ListDoctor=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.5/Hospital/api/Doctor/DateDoctor.php',
+                'http://192.168.100.11/Hospital/api/Doctor/DateDoctor.php',
                 
                 {
                     headers: {
@@ -48,11 +48,11 @@ const ListDoctor=()=>{
     }, [isLoading]);
 
 
-    const headers=['Medico','Horario','dias','especialidad','espacios','#'   ];
+    const headers=['Medico','Horario','dias','especialidad','espacios'];
     const rows=[
-        [user.me,user.ho,user.di,user.es,user.cu,'presionar'],
-        [user.medi,user.hor,user.dias,user.esp,user.cup,'presionar'],
-        [user.medico,user.hora,user.dia,user.especialidad,user.cupos,'presionar']
+        [user.me,user.ho,user.di,user.es,user.cu],
+        [user.medi,user.hor,user.dias,user.esp,user.cup],
+        [user.medico,user.hora,user.dia,user.especialidad,user.cupos]
     ]
     
     
@@ -72,15 +72,15 @@ const ListDoctor=()=>{
                     backgroundColor: '#87CEEB'
                 }}
                 height={40}
-                flexArr={[0.5,0.7,0.5,1,0.6,0.6]}
+                flexArr={[0.7,0.6,0.5,1,0.6]}
                 textStyle={{
                     textAlign: 'center'
                 }}
                 />
                 <TableWrapper>
                     <Rows data={rows}
-                    heightArr={[40,40,40,40,,40,40]}
-                    flexArr={[0.6,0.8,0.5,1,0.6,0.6]}
+                    heightArr={[54,54,54,54,,54,54]}
+                    flexArr={[0.7,0.6,0.5,1,0.6]}
                     textStyle={{
                         textAlign: 'center'
                     }}

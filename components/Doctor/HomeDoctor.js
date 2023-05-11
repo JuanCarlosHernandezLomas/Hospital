@@ -15,7 +15,7 @@ const HomeDoctor=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
+                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
                 
                 {
                     headers: {

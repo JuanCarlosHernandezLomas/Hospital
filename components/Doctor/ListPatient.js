@@ -14,7 +14,7 @@ const ListPatient=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
+                'http://192.168.100.11/Hospital/api/Patient/AllPatient.php',
                 
                 {
                     headers: {
@@ -23,26 +23,36 @@ const ListPatient=()=>{
                     },
                 }
             ).then((response) => {
-                console.log(response.data[0]);
+                console.log(response.data);
                 setLoading(false);
                 setUser({
                     ...user,
-                    nombre: response.data[0].cupos,
-                    Apellido: response.data[0].dia,
-                    especialidad: response.data[0].especialidad,
-                    hora: response.data[0].horario,
-                    medico: response.data[0].medico,
+                    paciente: response.data[0].paciente,
+                    cita: response.data[0].cita,
+                    NSS: response.data[0].NSS,
+                    Dia: response.data[0].Dia,
+                    Medico: response.data[0].Medico,
+                    pa: response.data[1].paciente,
+                    ci: response.data[1].cita,
+                    NUM: response.data[1].NSS,
+                    Di: response.data[1].Dia,
+                    Me: response.data[1].Medico,
+                    paci: response.data[2].paciente,
+                    citas: response.data[2].cita,
+                    NS: response.data[2].NSS,
+                    Dias: response.data[2].Dia,
+                    Medicos: response.data[2].Medico,
                     
                 });
                 
             })
         }, 100);
     }, [isLoading]);
-const headers=['Paciente','Hora','dia','estatus'];
+const headers=['Paciente','Hora','dia','Doctor',"NSS"];
     const rows=[
-        ['Maria','8:30','M','Carcelacion'],
-        ['Laura','4:00','L','bueno'],
-        ['Luis','3:40','V','bueno']
+        [user.paciente,user.cita,user.Dia,user.Medico,user.NSS],
+        [user.pa,user.ci,user.Di,user.Me,user.NUM],
+        [user.paci,user.citas,user.Dias,user.Medicos,user.NS]
     ]
     
     
@@ -62,15 +72,15 @@ const headers=['Paciente','Hora','dia','estatus'];
                     backgroundColor: '#87CEEB'
                 }}
                 height={40}
-                flexArr={[1,1,1,1]}
+                flexArr={[1,1,1,1,1]}
                 textStyle={{
                     textAlign: 'center'
                 }}
                 />
                 <TableWrapper>
                     <Rows data={rows}
-                    heightArr={[28,28,28,28,,28,28]}
-                    flexArr={[1,1,1,1]}
+                    heightArr={[54,54,54,54,54,54]}
+                    flexArr={[1,1,1,1,1]}
                     textStyle={{
                         textAlign: 'center'
                     }}
