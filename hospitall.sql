@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2023 a las 19:14:26
+-- Tiempo de generación: 11-05-2023 a las 20:36:17
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -31,20 +31,39 @@ CREATE TABLE `appointment` (
   `Id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
   `Doctor_id` int(11) NOT NULL,
-  `scheduledDate` datetime NOT NULL,
-  `registrationDate` datetime DEFAULT NULL,
-  `Numero_Orden` int(11) DEFAULT NULL CHECK (`Numero_Orden` >= 1)
+  `scheduledDate` time NOT NULL,
+  `Numero_Orden` int(11) DEFAULT NULL CHECK (`Numero_Orden` >= 1),
+  `Day` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `appointment`
 --
 
-INSERT INTO `appointment` (`Id`, `patient_id`, `Doctor_id`, `scheduledDate`, `registrationDate`, `Numero_Orden`) VALUES
-(1, 1, 1, '2023-02-02 16:31:43', '2023-02-15 09:31:43', 3),
-(2, 3, 2, '2023-02-03 15:59:55', '2023-02-03 09:00:00', 5),
-(3, 2, 1, '2023-02-03 15:59:55', '2023-02-03 08:59:59', 1),
-(4, 3, 1, '2023-02-10 09:02:05', '2023-02-10 09:02:05', 9);
+INSERT INTO `appointment` (`Id`, `patient_id`, `Doctor_id`, `scheduledDate`, `Numero_Orden`, `Day`) VALUES
+(1, 1, 4, '12:00:00', 2, 'X'),
+(2, 2, 1, '12:00:00', 2, 'V'),
+(3, 3, 3, '12:00:00', 2, 'D'),
+(4, 1, 2, '12:00:00', 2, 'X');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `coment`
+--
+
+CREATE TABLE `coment` (
+  `Id` int(11) NOT NULL,
+  `Usuario` int(50) NOT NULL,
+  `comentario` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `coment`
+--
+
+INSERT INTO `coment` (`Id`, `Usuario`, `comentario`) VALUES
+(1, 1, 'Fue un buen servicio');
 
 -- --------------------------------------------------------
 
@@ -53,6 +72,7 @@ INSERT INTO `appointment` (`Id`, `patient_id`, `Doctor_id`, `scheduledDate`, `re
 --
 
 CREATE TABLE `days` (
+  `ID` int(11) NOT NULL,
   `DAY` char(1) NOT NULL,
   `Doctor_id` int(11) DEFAULT NULL,
   `Schedules_id` int(11) DEFAULT NULL
@@ -62,10 +82,10 @@ CREATE TABLE `days` (
 -- Volcado de datos para la tabla `days`
 --
 
-INSERT INTO `days` (`DAY`, `Doctor_id`, `Schedules_id`) VALUES
-('L', 1, 1),
-('M', 2, 2),
-('x', 1, 2);
+INSERT INTO `days` (`ID`, `DAY`, `Doctor_id`, `Schedules_id`) VALUES
+(1, 'V', 1, 2),
+(2, 'S', 2, 1),
+(4, 'X', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -85,8 +105,10 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`Id`, `NameDoctor`, `SurnamesDoctor`, `Specialty`) VALUES
-(1, 'maria', 'carmen', 1),
-(2, 'fracisco', 'loera', 1);
+(1, 'Andres', 'Delgado', 2),
+(2, 'Raul', 'Jiménez ', 4),
+(3, 'Melisa', 'Gutiérrez ', 1),
+(4, 'Oscar', 'Gutiérrez ', 3);
 
 -- --------------------------------------------------------
 
@@ -108,10 +130,9 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`Id`, `NamePatient`, `SurnamesPatient`, `Direction`, `Phone`, `NSS`) VALUES
-(1, 'luis', 'peralta', 'asjdhakjh', '4494131232', '12345678910'),
-(2, 'andrea', 'reyes', 'lomas del ajedres ', '123444455', '12345678910'),
-(3, 'ana', 'reinosa', 'maravillas', '4491234356', '12345678112'),
-(4, 'mariana', 'ramirez', 'el dorado', '44913234567', '9876543210');
+(1, 'Andrea', 'Padilla', 'Salto de los salados', '4494131567', '123456789112'),
+(2, 'Oscar', 'Gómez', 'Salto de los arcos', '4494131555', '123456789114'),
+(3, 'Mariana', 'Santillan ', 'Lomas del ajedrez', '4494131598', '123456789119');
 
 -- --------------------------------------------------------
 
@@ -131,9 +152,8 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`Id`, `StarTime`, `EndTime`, `Spaces`) VALUES
-(1, '09:28:27', '09:38:00', 10),
-(2, '10:48:30', '11:48:30', 12),
-(3, '11:20:23', '05:23:33', 12);
+(1, '09:10:00', '15:23:00', 10),
+(2, '08:00:00', '20:23:00', 9);
 
 -- --------------------------------------------------------
 
@@ -151,9 +171,10 @@ CREATE TABLE `specialty` (
 --
 
 INSERT INTO `specialty` (`Id`, `Name`) VALUES
-(1, 'enfermera'),
-(2, 'cardiologo'),
-(3, '');
+(1, 'Cirujano'),
+(2, 'Neurologo'),
+(3, 'Enfermero'),
+(4, 'Traumatólogo');
 
 -- --------------------------------------------------------
 
@@ -165,7 +186,7 @@ CREATE TABLE `usuarios` (
   `Id` int(11) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Passwords` varchar(50) NOT NULL,
-  `Role` char(1) NOT NULL
+  `Role` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -173,9 +194,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Id`, `Email`, `Passwords`, `Role`) VALUES
-(1, 'carlos@gmail.com', 'lomas12', 'D'),
-(2, 'admin@gmail.com', 'admin', 'A'),
-(3, 'carlos@gmail.com', 'admin', 'A');
+(1, 'paciente@gmail.com', 'Pass1234', 1),
+(2, 'Admin@gmail.com', 'Pass1234', 3),
+(3, 'Doctor@gmail.com', 'Pass1234', 2);
 
 --
 -- Índices para tablas volcadas
@@ -190,9 +211,17 @@ ALTER TABLE `appointment`
   ADD KEY `Doctor_id` (`Doctor_id`);
 
 --
+-- Indices de la tabla `coment`
+--
+ALTER TABLE `coment`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Usuario` (`Usuario`);
+
+--
 -- Indices de la tabla `days`
 --
 ALTER TABLE `days`
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `Doctor_id` (`Doctor_id`),
   ADD KEY `Schedules_id` (`Schedules_id`);
 
@@ -238,28 +267,40 @@ ALTER TABLE `appointment`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `coment`
+--
+ALTER TABLE `coment`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `days`
+--
+ALTER TABLE `days`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `specialty`
 --
 ALTER TABLE `specialty`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -277,6 +318,12 @@ ALTER TABLE `usuarios`
 ALTER TABLE `appointment`
   ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`Id`),
   ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`Doctor_id`) REFERENCES `doctor` (`Id`);
+
+--
+-- Filtros para la tabla `coment`
+--
+ALTER TABLE `coment`
+  ADD CONSTRAINT `coment_ibfk_1` FOREIGN KEY (`Usuario`) REFERENCES `patient` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `days`
