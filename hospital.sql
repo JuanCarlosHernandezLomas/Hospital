@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2023 a las 20:36:17
+-- Tiempo de generación: 12-05-2023 a las 21:00:42
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -41,10 +41,9 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`Id`, `patient_id`, `Doctor_id`, `scheduledDate`, `Numero_Orden`, `Day`) VALUES
-(1, 1, 4, '12:00:00', 2, 'X'),
 (2, 2, 1, '12:00:00', 2, 'V'),
 (3, 3, 3, '12:00:00', 2, 'D'),
-(4, 1, 2, '12:00:00', 2, 'X');
+(4, 1, 2, '12:00:00', 3, 'X');
 
 -- --------------------------------------------------------
 

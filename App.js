@@ -17,7 +17,7 @@ import { createStackNavigator } from '@react-navigation/stack';
  import ChangePassword from "./components/auth/ChangePaassword";
  import ListPatient from "./components/Doctor/ListPatient";
  import HomeDoctor from "./components/Doctor/HomeDoctor";
-import DateDoctor from "./components/Doctor/DateDoctor";
+import CreateHistorial from "./components/Doctor/CreateHistorial";
 import CreateDoctor from "./components/Doctor/CreateDoctor";
 import DoctorSchedule from "./components/Admin/DoctorSchedule";
 import Speciality from "./components/Admin/Speciality";
@@ -96,7 +96,7 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
     }}>
       <Tab.Screen 
       name="Date" 
-      component={DateDoctor}
+      component={CreateHistorial}
       options={{
         tabBarIcon:({})=>(
           <Fontisto name="date" size={24} color="black" />

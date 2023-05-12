@@ -140,7 +140,7 @@ const submit = async ()=>{
             const formDataforRequest = new FormData()
             formDataforRequest.append('Doctor', formData.Doctor)
             formDataforRequest.append('Day', formData.Day)
-            formDataforRequest.append('Time', selected.Time)
+            formDataforRequest.append('Time', formData.Time)
 
             console.log(formDataforRequest)
             const response = await axios.post(
@@ -225,8 +225,8 @@ const submit = async ()=>{
                 data={hora}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
-                onSelect={() =>setSelected({
-                    ...selected,
+                onSelect={() =>setData({
+                    ...formData,
                     Time:selected
                 })}
                 />

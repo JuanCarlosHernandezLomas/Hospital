@@ -97,7 +97,7 @@ const CreateDoctor=()=>{
             const formDataforRequest = new FormData()
             formDataforRequest.append('NameDoctor', formData.NameDoctor)
             formDataforRequest.append('SurnamesDoctor', formData.SurnamesDoctor)
-            formDataforRequest.append('Specialty', selected.Specialty)
+            formDataforRequest.append('Specialty', formData.Specialty)
 
             const response = await axios.post(
                 'http://192.168.100.11/Hospital/api/Doctor/CreateDoctor.php', //172.16.34.42
@@ -195,8 +195,8 @@ const CreateDoctor=()=>{
                 data={data}
                 setSelected={setSelected}
                 dropdownItemStyles={{backgroundColor: 'white'}}
-                onSelect={() =>setSelected({
-                    ...selected,
+                onSelect={() =>setData({
+                    ...formData,
                     Specialty:selected
                 })}
                 />
