@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
  import Home from "./components/Screen/HomeScreen";
  import ListDoctor from "./components/Screen/ListDoctor";
  import HomeUser from "./components/Screen/HomeUser";
+ import ShowDate from "./components/Screen/ShowDate";
  import Register from "./components/auth/Register";
  import Login from "./components/auth/Login";
  import ChangePassword from "./components/auth/ChangePaassword";
@@ -19,10 +20,11 @@ import { createStackNavigator } from '@react-navigation/stack';
  import HomeDoctor from "./components/Doctor/HomeDoctor";
 import CreateHistorial from "./components/Doctor/CreateHistorial";
 import CreateDoctor from "./components/Doctor/CreateDoctor";
+import Viewhistory from "./components/Doctor/Viewhistory";
 import DoctorSchedule from "./components/Admin/DoctorSchedule";
 import Speciality from "./components/Admin/Speciality";
 import Selectschedule from "./components/Admin/Selectschedule";
-import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome, Fontisto,FontAwesome5,MaterialIcons,AntDesign,Ionicons  } from '@expo/vector-icons'; 
 
 
  const Tab = createBottomTabNavigator();
@@ -64,11 +66,21 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
         headerShown: false,
       }}/>
       <Tab.Screen 
+      name="Show Date" 
+      component={ShowDate}
+      options={{
+        tabBarIcon:({})=>(
+          <Fontisto name="list-1" size={24} color="black" />
+        ),
+        headerShown: false,
+      }}/>
+
+      <Tab.Screen 
       name="Queston" 
       component={QuestionSreen}
       options={{
         tabBarIcon:({})=>(
-          <MaterialCommunityIcons name="chat-question-outline" size={24} color="black" />
+          <AntDesign name="mail" size={24} color="black" />
         ),
         tabBarBadge: 5,
         headerShown: false,
@@ -95,7 +107,7 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
       tabBarActiveTintColor: '#5cceee',
     }}>
       <Tab.Screen 
-      name="Date" 
+      name="Create History" 
       component={CreateHistorial}
       options={{
         tabBarIcon:({})=>(
@@ -104,11 +116,21 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
         headerShown: false,
       }}/>
       <Tab.Screen 
+      name="show History" 
+      component={Viewhistory}
+      options={{
+        tabBarIcon:({})=>(
+          <AntDesign name="solution1" size={24} color="black" />
+        ),
+        headerShown: false,
+      }}/>
+
+      <Tab.Screen 
       name="Patients" 
       component={ListPatient}
       options={{
         tabBarIcon:({})=>(
-          <Fontisto name="doctor" size={24} color="black" />
+          <AntDesign name="table" size={24} color="black" />
         ),
         headerShown: false,
       }}/>
@@ -138,7 +160,7 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
       component={DoctorSchedule}
       options={{
         tabBarIcon:({})=>(
-          <Fontisto name="date" size={24} color="black" />
+          <Ionicons name="md-time-sharp" size={24} color="black" />
         ),
         headerShown: false,
       }}/>
@@ -156,7 +178,7 @@ import { FontAwesome, Fontisto,FontAwesome5,MaterialCommunityIcons } from '@expo
       component={Speciality}
       options={{
         tabBarIcon:({})=>(
-          <Fontisto name="doctor" size={24} color="black" />
+          <MaterialIcons name="file-upload" size={24} color="black" />
         ),
         headerShown: false,
       }}/>

@@ -14,7 +14,7 @@ const ListPatient=()=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Patient/AllPatient.php',
+                'http://192.168.100.5/Hospital/api/Patient/AllPatient.php',
                 
                 {
                     headers: {

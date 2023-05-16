@@ -71,7 +71,7 @@ const DateUser=()=>{
        useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/AllDoctor.php',
+                'http://192.168.100.5/Hospital/api/Doctor/AllDoctor.php',
                 
                 {
                     headers: {
@@ -100,7 +100,7 @@ const DateUser=()=>{
             const formDataforRequest = new FormData()
             formDataforRequest.append("NSS",formData.NSS)
             const response = await axios.post(
-                'http://192.168.100.11/Hospital/api/Patient/SelectNss.php',
+                'http://192.168.100.5/Hospital/api/Patient/SelectNss.php',
                     formDataforRequest,
                     {
                         headers: {
@@ -125,7 +125,7 @@ const DateUser=()=>{
             formDataforRequest.append('paciente', response.data[0].Id)
             console.log(formDataforRequest)
             const respuesta =  axios.post(
-                'http://192.168.100.11/Hospital/api/Patient/CreateDate.php',
+                'http://192.168.100.5/Hospital/api/Patient/CreateDate.php',
                     formDataforRequest,
                     {
                         headers: {
@@ -274,19 +274,7 @@ const day=[
                 onPress={submit}
         >
             Generar cita 
-        </Button>
-        <Button
-                mt="2"
-                size="lg"
-                backgroundColor="#F50106"
-                borderRadius={2}   
-                onPress= {()=>{
-                    navigation.navigation('HomeUser')
-                }}
-        >
-            cancelar cita 
-        </Button>
-            
+        </Button>            
             </VStack> 
             </Box>      
         </Center>

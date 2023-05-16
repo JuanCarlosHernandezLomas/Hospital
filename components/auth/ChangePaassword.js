@@ -56,7 +56,7 @@ const ChangePassword=({navigation})=>{
             formDataforRequest.append('Password', formData.Passwords)
 
             const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/Password.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Password.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -121,7 +121,7 @@ const ChangePassword=({navigation})=>{
                            {'Passwords' in errors ?
                                 <FormControl.ErrorMessage>{errors.Passwords}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
-                                The password must have a min of 8, one Capital and One special character
+                                The password must have a min of 3
                                 </FormControl.HelperText>
                             }
                     </FormControl>
@@ -141,7 +141,7 @@ const ChangePassword=({navigation})=>{
                         borderRadius={30}
                         onPress={() => { navigation.navigate('Login') }}
                         >  
-                        regresar
+                        back
                     </Button>
                 </VStack>
             </Box>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Dimensions,StyleSheet,View,Text, ScrollView, SafeAreaView, Image } from "react-native";
+import { VStack,Center , Box} from "native-base";
+import { Dimensions,StyleSheet,View,Text, ScrollView, SafeAreaView, Image,  } from "react-native";
 
 const images = [
     'https://static.wikia.nocookie.net/the-good-doctor/images/b/b1/101Hospital.png/revision/latest?cb=20171120221941',
@@ -50,6 +51,7 @@ const Home=()=>{
                      )
                      }
                  </ScrollView>
+                 
                  <View style={styles.wrapDot}>
                     {
                         images.map((e, index)=>
@@ -61,20 +63,18 @@ const Home=()=>{
                         </Text>
                         )
                     }
-                 </View>
-            </View> 
-        </SafeAreaView>       
+                 </View>   
+                 <Text
+                 >contamos con el mejor equipo calificado para atender tus nesecidades</Text>      
+            </View>
+        </SafeAreaView>   
+            
     );
 };
 const styles = StyleSheet.create({
     container:{
         backgroundColor: "#CECEE5",
         flex: 1,
-        
-        
-        
-        
-
     },
     wrap:{
         marginTop: '5%',
@@ -105,6 +105,14 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 20
         
+    },
+    newss:{
+        margin: 2,
+        
+        position:'absolute',
+        flexDirection:'row',
+        alignSelf: 'center'
+
     },
     texts:{
         position: 'absolute',

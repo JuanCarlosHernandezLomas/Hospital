@@ -23,7 +23,7 @@ const Selectschedule=()=>{
    useEffect(() => {
     setTimeout(() => {
         const response = axios.get(
-            'http://192.168.100.11/Hospital/api/Doctor/AllDoctor.php',
+            'http://192.168.100.5/Hospital/api/Doctor/AllDoctor.php',
             
             {
                 headers: {
@@ -50,7 +50,7 @@ const Selectschedule=()=>{
 useEffect(() => {
     setTimeout(() => {
         const response = axios.get(
-            'http://192.168.100.11/Hospital/api/Admin/AllSchudeles.php',
+            'http://192.168.100.5/Hospital/api/Admin/AllSchudeles.php',
             
             {
                 headers: {
@@ -144,7 +144,7 @@ const submit = async ()=>{
 
             console.log(formDataforRequest)
             const response = await axios.post(
-                'http://192.168.100.11/Hospital/api/Admin/SelectSchudeles.php', //172.16.34.42
+                'http://192.168.100.5/Hospital/api/Admin/SelectSchudeles.php', //172.16.34.42
                 formDataforRequest,
                 {
                     headers: {

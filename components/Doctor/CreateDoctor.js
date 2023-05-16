@@ -56,7 +56,7 @@ const CreateDoctor=()=>{
        useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/Specialty.php',
+                'http://192.168.100.5/Hospital/api/Doctor/Specialty.php',
                 
                 {
                     headers: {
@@ -100,7 +100,7 @@ const CreateDoctor=()=>{
             formDataforRequest.append('Specialty', formData.Specialty)
 
             const response = await axios.post(
-                'http://192.168.100.11/Hospital/api/Doctor/CreateDoctor.php', //172.16.34.42
+                'http://192.168.100.5/Hospital/api/Doctor/CreateDoctor.php', //172.16.34.42
                 formDataforRequest,
                 {
                     headers: {

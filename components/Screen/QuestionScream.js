@@ -52,7 +52,7 @@ const QuestionSreen=()=>{
         formDataforRequest.append('Name', formData.Name)
         formDataforRequest.append('LastName', formData.LastName)
         const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/Patient/Selecespuser.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Patient/Selecespuser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -67,7 +67,7 @@ const QuestionSreen=()=>{
             formDataforRequest.append('Coment', formData.Coment)
             console.log(formDataforRequest)
             const respuesta =  axios.post(
-                'http://192.168.100.11/Hospital/api/Patient/Coment.php',
+                'http://192.168.100.5/Hospital/api/Patient/Coment.php',
                     formDataforRequest,
                     {
                         headers: {
@@ -177,7 +177,7 @@ const QuestionSreen=()=>{
                 onPress={submit} 
                 
         >
-            Enviar pregunta
+            Send Coment
         </Button>
             
             </VStack> 

@@ -1,11 +1,14 @@
 <?php
 include ("../conexion.php");
 $conexion = OpenCon();
-$cita = $_POST['Nocita'];
+$Folio = $_POST['Folio'];
 
 
-    $sql ="DELETE FROM `appointment` 
-    WHERE Id= $cita";
+    $sql ="SELECT Concat_ws(' ', NamePatient,SurnamesPatient) as 'paciente',
+    H.observations as 'observacion'
+    from medicalhistory H
+    join patient p on  H.Paciente= p.Id
+    WHERE Folio= '$Folio'";
    if( $result = $conexion->query($sql)){
     for(
         $set = array();
@@ -18,3 +21,5 @@ $cita = $_POST['Nocita'];
    }
   
 ?>
+
+

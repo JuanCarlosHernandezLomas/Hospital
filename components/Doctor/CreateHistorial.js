@@ -60,7 +60,7 @@ const CreateHistorial=()=>{
             formDataforRequest.append('Name', formData.Name)
             formDataforRequest.append('LastName', formData.Lastname)
             const response = await axios.post(
-                'http://192.168.100.11/Hospital/api/Patient/Selecespuser.php', //172.16.34.42
+                'http://192.168.100.5/Hospital/api/Patient/Selecespuser.php', //172.16.34.42
                 formDataforRequest,
                 {
                     headers: {
@@ -75,7 +75,7 @@ const CreateHistorial=()=>{
                 formDataforRequest.append('observations', formData.observations)
                 console.log(formDataforRequest)
                 const respuesta =  axios.post(
-                    'http://192.168.100.11/Hospital/api/Doctor/MedicalHistory.php',
+                    'http://192.168.100.5/Hospital/api/Doctor/MedicalHistory.php',
                         formDataforRequest,
                         {
                             headers: {

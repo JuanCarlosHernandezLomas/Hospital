@@ -90,7 +90,7 @@ const CreateUser=(navigate)=>{
         formDataforRequest.append('Phone', formData.Phone)
         formDataforRequest.append('NSS', formData.NSS)
         const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/Patient/CreateUser.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Patient/CreateUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -240,7 +240,7 @@ const CreateUser=(navigate)=>{
                 borderRadius={2}   
                 onPress= {submit}
             >
-                Guardar
+                Save
              </Button>
              <Button
                 mt="2"
@@ -251,7 +251,7 @@ const CreateUser=(navigate)=>{
                     navigation.navigate('UserTab')
                 }}
         >
-         Regresar
+         Back
         </Button>
             </ScrollView>
             </VStack> 

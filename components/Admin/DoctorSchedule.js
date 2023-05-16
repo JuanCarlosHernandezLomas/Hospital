@@ -59,7 +59,7 @@ const DoctorSchedule=()=>{
 
 
         const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/Admin/Schudeles.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Admin/Schudeles.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {

@@ -7,8 +7,8 @@ $Time = $_POST['Time'];
 $Paciente=$_POST['paciente'];
 
 
-    $sql ="INSERT INTO `appointment`( `patient_id`, `Doctor_id`, `scheduledDate`, `Numero_Orden`, `Day`) 
-    VALUES ('$Paciente','$Doctor','$Time','2','$Day')";
+    $sql ="INSERT INTO `appointment`( `patient_id`, `Doctor_id`, `scheduledDate`,  `Day`) 
+    VALUES ('$Paciente','$Doctor','$Time','$Day')";
     $result = $conexion->query($sql);
     
     echo("");

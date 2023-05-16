@@ -59,7 +59,7 @@ const Login=({navigation})=>{
             formDataforRequest.append('action', formData.action)
 
             const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/login.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/login.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -114,7 +114,7 @@ const data=[
             <Box px="1" py="8" w="90%" maxW="290">
                 <VStack space={3} mt="5">
                 <FormControl isRequired isInvalid={'Email' in errors}>
-                        <FormControl.Label>Email</FormControl.Label>
+                        <FormControl.Label >Email</FormControl.Label>
                         <Input p={2} placeholder="example@mail.com"
                          borderRadius={30}
                          backgroundColor={"white"}

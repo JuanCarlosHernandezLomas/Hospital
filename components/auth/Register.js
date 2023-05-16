@@ -66,7 +66,7 @@ const Register=({navigation})=>{
             formDataforRequest.append('Role', formData.Role)
 
             const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/registrar.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/registrar.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -142,7 +142,7 @@ const Register=({navigation})=>{
                            {'Passwords' in errors ?
                                 <FormControl.ErrorMessage>{errors.Passwords}</FormControl.ErrorMessage> :
                                 <FormControl.HelperText>
-                                The password must have a min of 8, one Capital and One special character
+                                The password must have a min of 3
                                 </FormControl.HelperText>
                             }
                     </FormControl>

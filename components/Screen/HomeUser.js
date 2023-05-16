@@ -15,7 +15,7 @@ const HomeUser=({navigation})=>{
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Patient/SelectUser.php',
+                'http://192.168.100.5/Hospital/api/Patient/SelectUser.php',
                 
                 {
                     headers: {
@@ -40,7 +40,32 @@ const HomeUser=({navigation})=>{
         }, 100);
     }, [isLoading]);
 
+    const check = async()=>{
+        const response = axios.get(
+            'http://192.168.100.5/Hospital/api/Patient/SelectUser.php',
+            
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Access-control-Allow-origin": "*"
+                },
+            },
+        ).then((response) => {
+            console.log(response.data);
+            setLoading(false);
+            setUser({
+                ...user,
+                NamePatient: response.data[0].NamePatient,
+                SurnamesPatient: response.data[0].SurnamesPatient,
+                Direction: response.data[0].Direction,
+                Phone: response.data[0].Phone,
+                NSS: response.data[0].NSS,
+                
+            });
+            
+        })
 
+    }
 
 
 
@@ -98,6 +123,16 @@ const HomeUser=({navigation})=>{
                 }}
         >
             Editar
+        </Button>
+        <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#6495ED"
+                borderRadius={2}   
+                onPress= {(check)
+                }
+        >
+            Refresh
         </Button>
         <Button
                 mt="2"

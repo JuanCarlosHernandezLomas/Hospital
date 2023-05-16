@@ -11,11 +11,12 @@ const HomeDoctor=()=>{
     const navigation = useNavigation();
     const [isLoading, setLoading] = React.useState();
     const [user, setUser] = React.useState([]);
+    
 
     useEffect(() => {
         setTimeout(() => {
             const response = axios.get(
-                'http://192.168.100.11/Hospital/api/Doctor/SelectDoctor.php',
+                'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
                 
                 {
                     headers: {
@@ -39,6 +40,34 @@ const HomeDoctor=()=>{
             })
         }, 100);
     }, [isLoading]);
+
+    const check = async()=>{
+        const response = axios.get(
+            'http://192.168.100.5/Hospital/api/Doctor/SelectDoctor.php',
+            
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "Access-control-Allow-origin": "*"
+                },
+            },
+        ).then((response) => {
+            console.log(response.data);
+            setLoading(false);
+            setUser({
+                ...user,
+                Nombre: response.data[0].Nombre,
+                Apellido: response.data[0].Apellido,
+                especialidad: response.data[0].especialidad,
+                inicio: response.data[0].inicio,
+                salida: response.data[0].salida,
+            
+            });
+            
+        })
+
+    }
+
 
 
 
@@ -97,6 +126,17 @@ return(
         >
             Actualizar Datos
          </Button>
+         <Button
+                mt="2"
+                size="lg"
+                backgroundColor="#6495ED"
+                borderRadius={2}   
+                onPress= {(check)
+                }
+        >
+            Refresh
+        </Button>
+
          <Button
                 mt="2"
                 size="lg"

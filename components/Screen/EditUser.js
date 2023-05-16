@@ -91,7 +91,7 @@ const EditUser=(navigate)=>{
     
 //172.25.48.1
         const response = await axios.post(
-            'http://192.168.100.11/Hospital/api/Patient/EditUser.php', //172.16.34.42
+            'http://192.168.100.5/Hospital/api/Patient/EditUser.php', //172.16.34.42
             formDataforRequest,
             {
                 headers: {
@@ -241,7 +241,7 @@ const EditUser=(navigate)=>{
                 borderRadius={2}   
                 onPress= {submit}
             >
-                Guardar
+                Save
              </Button>
              <Button
                 mt="2"
@@ -252,7 +252,7 @@ const EditUser=(navigate)=>{
                     navigation.navigate('UserTab')
                 }}
         >
-         Regresar
+         Back
         </Button>
             </ScrollView>
             </VStack> 
